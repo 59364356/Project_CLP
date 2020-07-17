@@ -1,0 +1,90 @@
+<html class="" style="">
+  <body class="list bg" style="">
+      
+
+    <div style=" height:100%; width:100%; display:flex;">
+        <div style=" height:100%; width:70%;"></div>
+        <div style=" height:100%; width:30%; text-align: center; display:flex; align-items:center; justify-content:center;flex-direction: column;">
+            
+            <mat-card class="mat-elevation-z8" style="background-color:rgba(255, 255, 255, 0.9); width:60%; height:40%; display:flex; align-items:center; flex-direction: column; ">
+                <!-- <div style="background-color: #a0f8a0;width:100%; height:90%; display:flex; align-items:center; justify-content:center;flex-direction: column;"> -->
+                <div style=" margin-top: 8%;font-size:200%;">
+                    <span style="">Admin Login</span> 
+                </div>
+
+                <div style="margin-top: 5%; width: 100%; height: 70%; display:flex; align-items: center; flex-direction:column; justify-content:center;">
+                    <mat-form-field appearance="fill" style="width: 80%; " >
+                        <mat-icon matPrefix>person</mat-icon>
+                        <mat-label style="padding-left: 5%;">Username</mat-label>
+                        <input name="username" [(ngModel)]="mUsername" matInput  style="padding-left: 5%;">
+                    </mat-form-field>
+
+                    <mat-form-field appearance="fill" style="width: 80%;">
+                        <mat-icon matPrefix>lock</mat-icon>
+                        <mat-label style="padding-left: 5%;">Password</mat-label>
+                        <input name="password" [(ngModel)]="mPassword" matInput type="password"  style="padding-left: 5%;">
+                    </mat-form-field>
+                        <button style="width: 30%;" type="submit" (click)="onClickLogin()" mat-raised-button color="primary" >Login</button>
+            
+                </div>
+                <!-- </div> -->
+            </mat-card>
+        </div>
+    </div>
+
+    
+
+    <!-- <mat-grid-list cols="2" rowHeight="100%" style="background-color: #000000;">
+
+        <mat-grid-tile style="background-color: #a0f8af;" colspan="1" rowspan="1">
+            <span style="font-size:70%;">Admin Login</span> 
+        </mat-grid-tile>
+
+    </mat-grid-list> -->
+
+    <!-- <mat-card  style="width: 40%; height: 60%; ">
+
+        <div style="text-align: center; font-size: 200%;">
+            <mat-grid-list cols="3" rowHeight="3:1" style="background-color: #000000;">
+
+                <mat-grid-tile style="background-color: #a0f8af;" colspan="3" rowspan="1">
+                    <span style="font-size:70%;">Admin Login</span> 
+                </mat-grid-tile>
+        
+                <mat-grid-tile style="background-color: #a0cef8; " colspan="3" rowspan="7">
+
+                        <form class="input-form" >
+                            <div>
+                                <mat-form-field appearance="fill" >
+                                    <mat-icon matPrefix>person</mat-icon>
+                                    <mat-label style="padding-left: 5%;">Username</mat-label>
+                                    <input name="username" [(ngModel)]="mUsername" matInput  style="padding-left: 5%;">
+                                </mat-form-field>
+                            </div>
+
+                            <div>
+                                <mat-form-field appearance="fill" >
+                                    <mat-icon matPrefix>lock</mat-icon>
+                                    <mat-label style="padding-left: 5%;">Password</mat-label>
+                                    <input name="password" [(ngModel)]="mPassword" matInput type="password"  style="padding-left: 5%;">
+                                </mat-form-field>
+                            </div>
+                           
+                            <div>
+                                <button type="submit" (click)="onClickLogin()" mat-raised-button color="primary" style="width: 50%; height: 20%;">Login</button>
+                            </div> 
+
+                        </form>
+
+                </mat-grid-tile>
+              </mat-grid-list>
+        </div>
+
+    </mat-card> -->
+    
+
+  </body>
+</html>
+
+<router-outlet></router-outlet>
+

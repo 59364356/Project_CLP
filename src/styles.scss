@@ -1,1 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
+
+
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+// @import url('https://fonts.googleapis.com/css?family=Indie+Flower&display=swap');
+
+@import '~@angular/material/theming';
+$custom-typography: mat-typography-config(
+  $font-family: 'prompt'
+);
+@include mat-core($custom-typography);
+
+// * {
+//     font-family: Raleway /* Replace with your custom font */, sans-serif !important; 
+//     /* Add !important to overwrite all elements */
+//   }

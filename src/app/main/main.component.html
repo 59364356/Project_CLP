@@ -1,0 +1,623 @@
+<html class="bg">
+  <body class="list">
+    
+    <!-- <mat-grid-list cols="4" rowHeight="10%" style="background-color: #f5a0f8;">
+
+      <mat-grid-tile style="background-color: #a0f8af;" colspan="4" rowspan="1">
+        <div style=" background-color: black;">
+          <h1>Home</h1>
+        </div>
+        
+      </mat-grid-tile>
+
+      <mat-grid-tile style="background-color: #f8c8a0; " colspan="4" rowspan="7">
+
+        <mat-list style=" background-color: #fff597; width: 100%; height:70%; border-radius: 3%;">
+          
+          <mat-list-item >  
+            <mat-form-field style="background-color:#d6d6d2; margin-left:10%; width: 80%; ">
+              <mat-label >Filter</mat-label>
+              <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" />
+            </mat-form-field>
+          </mat-list-item>
+
+        
+          <mat-list-item style=" width: 100%; height: 100%;">
+
+            <div class="example-container mat-elevation-z8" >
+    
+              <table style="background-color: #2a910b; width: 100%; height: 100%; border-radius: 40%;" mat-table matSort [dataSource]="dataSource">
+                
+                <ng-container matColumnDef="id">
+                  <th  mat-header-cell *matHeaderCellDef mat-sort-header>No.</th>
+                  <td  mat-cell *matCellDef="let element">{{ element.id }}</td>
+                </ng-container>
+        
+                <ng-container  matColumnDef="first_name">
+                  <th  mat-header-cell *matHeaderCellDef>First</th>
+                  <td  mat-cell *matCellDef="let element">{{ element.first_name }}</td>
+                </ng-container>
+        
+                <ng-container  matColumnDef="last_name">
+                  <th mat-header-cell *matHeaderCellDef >Last Name</th>
+                  <td mat-cell *matCellDef="let element">{{ element.last_name }}</td>
+                </ng-container>
+        
+                <ng-container  matColumnDef="email">
+                  <th mat-header-cell *matHeaderCellDef>Email</th>
+                  <td mat-cell *matCellDef="let element">{{ element.email }}</td>
+                </ng-container>
+        
+                <ng-container  matColumnDef="avatar">
+                  <th mat-header-cell *matHeaderCellDef>Anatar</th>
+                  <td mat-cell *matCellDef="let element"><img [src]="element.avatar" /></td>
+                </ng-container>
+        
+                <tr mat-header-row *matHeaderRowDef="displayedColumns sticky: true"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+                
+              </table>
+            </div>
+          </mat-list-item>
+
+  
+          <mat-list-item >
+           <mat-paginator  mat-footer-row style="width: 100%; " [pageSizeOptions]="[3, 5, 10, 20]"   showFirstLastButtons></mat-paginator>
+
+          </mat-list-item>
+
+        </mat-list>
+
+
+    
+ 
+      </mat-grid-tile>
+
+      <mat-grid-tile style="background-color: #fde2cc;" colspan="4" rowspan="1">
+
+      </mat-grid-tile>
+              
+    </mat-grid-list> -->
+
+
+
+
+
+
+
+
+
+
+    <!-- ******************* Tab Groub ******************* -->
+    <mat-tab-group  class=" mat-elevation-z8" style="background-color: #ffffff;" mat-align-tabs="start">
+      <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ Tab 1 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+      <mat-tab  label="ประตู 4">
+
+        <!-- -------------- Grid Group -------------- -->
+        <mat-grid-list cols="4" rowHeight="3:1">
+
+          <!-- Grid 1 -->
+          <mat-grid-tile colspan="2" rowspan="1">
+            <div style=" background-color: #8a8a8a; color:#ffffff; width: 98%; height: 100%; display:flex; align-items: center; justify-content: center; font-size:2.5em;">
+              <p>ทางเข้า</p>
+
+            </div>
+          </mat-grid-tile>
+          <!-- Grid 2 -->
+          <mat-grid-tile  colspan="2" rowspan="1">
+            <div style=" background-color: #f07b3f; color:#ffffff; width: 98%; height: 100%; display:flex; align-items: center; justify-content: center; font-size:2.5em;">
+              <p>ทางออก</p>
+            </div>
+          </mat-grid-tile>
+
+          <!-- Grid 3 -->
+          <mat-grid-tile colspan="2" rowspan="3">
+            <div  style=" background-color: #e6e6e6; width: 98%; height: 95%; ">
+              <div *ngFor='let dt of test'>
+                <h3>{{<img [src]="dt" />}}</h3>
+              </div>
+
+              <!-- <div *ngFor='let dt of _door4In'>
+                <h3>{{dt.datetime}}</h3>
+              </div> -->
+            </div>
+          </mat-grid-tile>
+          <!-- Grid 4 -->
+          <mat-grid-tile colspan="2" rowspan="3">
+            <div  style=" background-color: #ffdf89; width: 98%; height: 95%; ">
+              <!-- <div *ngFor="let ts of _numCar">
+                <h2>{{ts.number_car}}</h2>
+              </div> -->
+
+            </div>
+          </mat-grid-tile>
+
+          <!-- Grid 5 -->
+          <mat-grid-tile colspan="2" rowspan="6">
+            <div  class=" mat-elevation-z8" style="background-color:#e6e6e6; height: 95%; width: 98%; display: flex;flex-direction: column;">
+
+              <mat-form-field  style=" margin-left:10%; width: 80%; ">
+                <mat-label >Search</mat-label>
+                <input matInput (keyup)="door4InSearch($event)" placeholder="Search" />
+              </mat-form-field>
+
+              <div class="example-container" >
+
+                <table style="background-color: #e6e6e6; "   mat-table matSort matSortActive="element.id" [dataSource]="door4InSource">
+                  
+                  <ng-container matColumnDef="number_car">
+                    <th style="background-color: #8a8a8a;" mat-header-cell *matHeaderCellDef mat-sort-header>Number Car</th>
+                    <td  mat-cell *matCellDef="let element">{{ element.number_car }}</td>
+                  </ng-container>
+          
+                  <ng-container  matColumnDef="door">
+                    <th style="background-color: #8a8a8a;" mat-header-cell *matHeaderCellDef mat-sort-header>Door</th>
+                    <td  mat-cell *matCellDef="let element">{{ element.door }}</td>
+                  </ng-container>
+          
+                  <ng-container  matColumnDef="gateway">
+                    <th style="background-color: #8a8a8a;" mat-header-cell *matHeaderCellDef  mat-sort-header>Gateway</th>
+                    <td mat-cell *matCellDef="let element">{{ element.gateway }}</td>
+                  </ng-container>
+          
+                  <ng-container  matColumnDef="datetime">
+                    <th style="background-color: #8a8a8a;" mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
+                    <td mat-cell *matCellDef="let element">{{ element.datetime }}</td>
+                  </ng-container>
+          
+          
+                  <tr mat-header-row *matHeaderRowDef="door4InColumns sticky: true"></tr>
+                  <tr mat-row *matRowDef="let row; columns: door4InColumns"></tr>
+                  
+                  <!-- No Data V.10
+                  <tr class="mat-row" *matNoDataRow>
+                    <td class="mat-cell" colspan="4">No data matching the filter</td>
+                  </tr> -->
+                  
+                </table>
+              </div>
+              <mat-paginator mat-footer-row  style="width: 100%;color:#ffffff; background-color: #8a8a8a;" [pageSizeOptions]="[3, 5, 10, 20]"   showFirstLastButtons></mat-paginator>
+            </div>
+          </mat-grid-tile>
+
+          <!-- Grid 6 -->
+          <mat-grid-tile colspan="2" rowspan="6">
+            <div  class=" mat-elevation-z8" style="background-color:#ffdf89; height: 95%; width: 98%; display: flex;flex-direction: column;">
+
+              <mat-form-field color="warn" style=" margin-left:10%; width: 80%; ">
+                <mat-label >Search</mat-label>
+                <input matInput (keyup)="door4OutSearch($event)" placeholder="Search" />
+              </mat-form-field>
+
+              <div class="example-container" >
+
+                <table style="background-color: #ffdf89; "   mat-table matSort matSortActive="element.id" [dataSource]="door4OutSource">
+                  
+                  <ng-container matColumnDef="number_car">
+                    <th style="background-color: #f07b3f;" mat-header-cell *matHeaderCellDef mat-sort-header>Number Car</th>
+                    <td  mat-cell *matCellDef="let element">{{ element.number_car }}</td>
+                  </ng-container>
+          
+                  <ng-container  matColumnDef="door">
+                    <th style="background-color: #f07b3f;" mat-header-cell *matHeaderCellDef mat-sort-header>Door</th>
+                    <td  mat-cell *matCellDef="let element">{{ element.door }}</td>
+                  </ng-container>
+          
+                  <ng-container  matColumnDef="gateway">
+                    <th style="background-color: #f07b3f;" mat-header-cell *matHeaderCellDef  mat-sort-header>Gateway</th>
+                    <td mat-cell *matCellDef="let element">{{ element.gateway }}</td>
+                  </ng-container>
+          
+                  <ng-container  matColumnDef="datetime">
+                    <th style="background-color: #f07b3f;" mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
+                    <td mat-cell *matCellDef="let element">{{ element.datetime }}</td>
+                  </ng-container>
+          
+          
+                  <tr mat-header-row *matHeaderRowDef="door4OutColumns sticky: true"></tr>
+                  <tr mat-row *matRowDef="let row; columns: door4OutColumns"></tr>
+                  
+                </table>
+              </div>
+            <mat-paginator mat-footer-row  style="width: 100%;color:#ffffff; background-color: #f07b3f;" [pageSizeOptions]="[5, 10, 20]"   showFirstLastButtons></mat-paginator>
+            </div>
+          </mat-grid-tile>
+
+
+
+
+          
+        </mat-grid-list>
+        <!-- ---------------------------------------------- -->
+    </mat-tab>
+
+    <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ Tab 2 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  -->
+    <mat-tab label="ประตู 5">
+
+      <!-- -------------- Grid Group -------------- -->
+      <mat-grid-list cols="4" rowHeight="3:1">
+
+        <!-- Grid 1 -->
+        <mat-grid-tile colspan="2" rowspan="1">
+          <div style=" background-color: #8a8a8a; color:#ffffff; width: 98%; height: 100%; display:flex; align-items: center; justify-content: center; font-size:2.5em;">
+            <p>ทางเข้า</p>
+
+          </div>
+        </mat-grid-tile>
+        <!-- Grid 2 -->
+        <mat-grid-tile  colspan="2" rowspan="1">
+          <div style=" background-color: #f07b3f; color:#ffffff; width: 98%; height: 100%; display:flex; align-items: center; justify-content: center; font-size:2.5em;">
+            <p>ทางออก</p>
+          </div>
+        </mat-grid-tile>
+
+        <!-- Grid 3 -->
+        <mat-grid-tile colspan="2" rowspan="3">
+          <div  style=" background-color: #e6e6e6; width: 98%; height: 95%; ">
+            <!-- <div *ngFor='let dt of _door4In'>
+              <h3>{{dt.datetime}}</h3>
+            </div> -->
+          </div>
+        </mat-grid-tile>
+        <!-- Grid 4 -->
+        <mat-grid-tile colspan="2" rowspan="3">
+          <div  style=" background-color: #ffdf89; width: 98%; height: 95%; ">
+            <!-- <div *ngFor="let ts of _numCar">
+              <h2>{{ts.number_car}}</h2>
+            </div> -->
+
+          </div>
+        </mat-grid-tile>
+
+        <!-- Grid 5 -->
+        <mat-grid-tile colspan="2" rowspan="6">
+          <div  class=" mat-elevation-z8" style="background-color:#e6e6e6; height: 95%; width: 98%; display: flex;flex-direction: column;">
+
+            <mat-form-field  style=" margin-left:10%; width: 80%; ">
+              <mat-label >Search</mat-label>
+              <input matInput (keyup)="door5InSearch($event)" placeholder="Search" />
+            </mat-form-field>
+
+            <div class="example-container" >
+
+              <table style="background-color: #e6e6e6; "   mat-table matSort matSortActive="element.id" [dataSource]="door5InSource">
+                
+                <ng-container matColumnDef="number_car">
+                  <th style="background-color: #8a8a8a;" mat-header-cell *matHeaderCellDef mat-sort-header>Number Car</th>
+                  <td  mat-cell *matCellDef="let element">{{ element.number_car }}</td>
+                </ng-container>
+        
+                <ng-container  matColumnDef="door">
+                  <th style="background-color: #8a8a8a;" mat-header-cell *matHeaderCellDef mat-sort-header>Door</th>
+                  <td  mat-cell *matCellDef="let element">{{ element.door }}</td>
+                </ng-container>
+        
+                <ng-container  matColumnDef="gateway">
+                  <th style="background-color: #8a8a8a;" mat-header-cell *matHeaderCellDef  mat-sort-header>Gateway</th>
+                  <td mat-cell *matCellDef="let element">{{ element.gateway }}</td>
+                </ng-container>
+        
+                <ng-container  matColumnDef="datetime">
+                  <th style="background-color: #8a8a8a;" mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
+                  <td mat-cell *matCellDef="let element">{{ element.datetime }}</td>
+                </ng-container>
+        
+        
+                <tr mat-header-row *matHeaderRowDef="door5InColumns sticky: true"></tr>
+                <tr mat-row *matRowDef="let row; columns: door5InColumns"></tr>
+                
+                <!-- No Data V.10
+                <tr class="mat-row" *matNoDataRow>
+                  <td class="mat-cell" colspan="4">No data matching the filter</td>
+                </tr> -->
+                
+              </table>
+            </div>
+            <mat-paginator mat-footer-row  style="width: 100%;color:#ffffff; background-color: #8a8a8a;" [pageSizeOptions]="[3, 5, 10, 20]"   showFirstLastButtons></mat-paginator>
+          </div>
+        </mat-grid-tile>
+
+        <!-- Grid 6 -->
+        <mat-grid-tile colspan="2" rowspan="6">
+          <div  class=" mat-elevation-z8" style="background-color:#ffdf89; height: 95%; width: 98%; display: flex;flex-direction: column;">
+
+            <mat-form-field color="warn" style=" margin-left:10%; width: 80%; ">
+              <mat-label >Search</mat-label>
+              <input matInput (keyup)="door5OutSearch($event)" placeholder="Search" />
+            </mat-form-field>
+
+            <div class="example-container" >
+
+              <table style="background-color: #ffdf89; "   mat-table matSort matSortActive="element.id" [dataSource]="door5OutSource">
+                
+                <ng-container matColumnDef="number_car">
+                  <th style="background-color: #f07b3f;" mat-header-cell *matHeaderCellDef mat-sort-header>Number Car</th>
+                  <td  mat-cell *matCellDef="let element">{{ element.number_car }}</td>
+                </ng-container>
+        
+                <ng-container  matColumnDef="door">
+                  <th style="background-color: #f07b3f;" mat-header-cell *matHeaderCellDef mat-sort-header>Door</th>
+                  <td  mat-cell *matCellDef="let element">{{ element.door }}</td>
+                </ng-container>
+        
+                <ng-container  matColumnDef="gateway">
+                  <th style="background-color: #f07b3f;" mat-header-cell *matHeaderCellDef  mat-sort-header>Gateway</th>
+                  <td mat-cell *matCellDef="let element">{{ element.gateway }}</td>
+                </ng-container>
+        
+                <ng-container  matColumnDef="datetime">
+                  <th style="background-color: #f07b3f;" mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
+                  <td mat-cell *matCellDef="let element">{{ element.datetime }}</td>
+                </ng-container>
+        
+        
+                <tr mat-header-row *matHeaderRowDef="door5OutColumns sticky: true"></tr>
+                <tr mat-row *matRowDef="let row; columns: door5OutColumns"></tr>
+                
+              </table>
+            </div>
+          <mat-paginator mat-footer-row  style="width: 100%;color:#ffffff; background-color: #f07b3f;" [pageSizeOptions]="[5, 10, 20]"   showFirstLastButtons></mat-paginator>
+          </div>
+        </mat-grid-tile>
+
+
+
+
+        
+      </mat-grid-list>
+    
+
+
+    </mat-tab>
+
+      
+    
+    </mat-tab-group>
+    <!-- ****************************************************** -->
+
+
+          <!-- <mat-grid-tile colspan="2" rowspan="6">
+            <div class="mat-elevation-z8" style="background-color: #ffd460; width: 98%; height: 95%; display:flex; flex-direction:column;">
+              
+              <mat-form-field style=" margin-left:10%; width: 80%; ">
+                <mat-label >Filter</mat-label>
+                <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" />
+              </mat-form-field>
+              
+              <div class="example-container">
+
+                <table style="background-color: #ffd460 ; " mat-table matSort matSortActive="element.id" [dataSource]="dataSource">
+                  
+                  <ng-container matColumnDef="id">
+                    <th style="background-color: #f07b3f;" mat-header-cell *matHeaderCellDef mat-sort-header>No.</th>
+                    <td  mat-cell *matCellDef="let element">{{ element.id }}</td>
+                  </ng-container>
+          
+                  <ng-container  matColumnDef="first_name">
+                    <th style="background-color: #f07b3f;" mat-header-cell *matHeaderCellDef mat-sort-header>First</th>
+                    <td  mat-cell *matCellDef="let element">{{ element.first_name }}</td>
+                  </ng-container>
+          
+                  <ng-container  matColumnDef="last_name">
+                    <th style="background-color: #f07b3f;" mat-header-cell *matHeaderCellDef  mat-sort-header>Last Name</th>
+                    <td mat-cell *matCellDef="let element">{{ element.last_name }}</td>
+                  </ng-container>
+          
+                  <ng-container  matColumnDef="email">
+                    <th style="background-color: #f07b3f;" mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
+                    <td mat-cell *matCellDef="let element">{{ element.email }}</td>
+                  </ng-container>
+          
+                  <ng-container  matColumnDef="avatar">
+                    <th style="background-color: #f07b3f;" mat-header-cell *matHeaderCellDef mat-sort-header>Anatar</th>
+                    <td mat-cell *matCellDef="let element"><img [src]="element.avatar" /></td>
+                  </ng-container>
+          
+                  <tr mat-header-row *matHeaderRowDef="displayedColumns sticky: true"></tr>
+                  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+                  
+                </table>
+
+              </div>
+              <mat-paginator mat-footer-row style="width: 100%;color:#ffffff; background-color: #f07b3f;" [pageSizeOptions]="[3, 5, 10, 20]"   showFirstLastButtons></mat-paginator>
+            </div>
+
+          </mat-grid-tile> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <!-- <mat-grid-list cols="4" rowHeight="3:1" style="background-color: #f5a0f8;">
+
+    <mat-grid-tile style="background-color: #1eb437;" colspan="4" rowspan="1">
+      <div *ngFor="let icarin of _Icarin" style=" background-color: #79bb6c; width: 100%; height: 95%; ">
+        <mat-card>
+        </mat-card>
+
+      </div>
+      
+    </mat-grid-tile>
+
+      
+    <mat-grid-tile style="background-color: #f8c8a0; " colspan="4" rowspan="4">
+      <div class=" mat-elevation-z8" style="background-color:#faf099; height: 95%; width: 98%; display: flex;flex-direction: column;">
+
+      <mat-form-field style=" margin-left:10%; width: 80%; ">
+        <mat-label >Filter</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" />
+      </mat-form-field>
+
+      <div class="example-container" >
+
+        <table style="background-color: #fac822; " mat-table matSort matSortActive="element.id" [dataSource]="dataSource">
+          
+          <ng-container matColumnDef="id">
+            <th  mat-header-cell *matHeaderCellDef mat-sort-header>No.</th>
+            <td  mat-cell *matCellDef="let element">{{ element.id }}</td>
+          </ng-container>
+  
+          <ng-container  matColumnDef="first_name">
+            <th  mat-header-cell *matHeaderCellDef mat-sort-header>First</th>
+            <td  mat-cell *matCellDef="let element">{{ element.first_name }}</td>
+          </ng-container>
+  
+          <ng-container  matColumnDef="last_name">
+            <th mat-header-cell *matHeaderCellDef  mat-sort-header>Last Name</th>
+            <td mat-cell *matCellDef="let element">{{ element.last_name }}</td>
+          </ng-container>
+  
+          <ng-container  matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
+            <td mat-cell *matCellDef="let element">{{ element.email }}</td>
+          </ng-container>
+  
+          <ng-container  matColumnDef="avatar">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Anatar</th>
+            <td mat-cell *matCellDef="let element"><img [src]="element.avatar" /></td>
+          </ng-container>
+  
+          <tr mat-header-row *matHeaderRowDef="displayedColumns sticky: true"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+          
+        </table>
+      </div>
+
+      <mat-paginator  mat-footer-row style="width: 100%; background-color: transparent;" [pageSizeOptions]="[3, 5, 10, 20]"   showFirstLastButtons></mat-paginator>
+
+      </div>
+    </mat-grid-tile>
+
+    <mat-grid-tile style="background-color: #f7a25c;" colspan="4" rowspan="1">
+
+    </mat-grid-tile>
+            
+  </mat-grid-list> -->
+
+
+
+
+
+
+
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+<!-- <html style="background-color: #b6b6b6;">
+  <body class="list" style="">
+
+    <mat-grid-list cols="4" rowHeight="2:1" style="background-color: #f5a0f8;">
+
+        <mat-grid-tile style="background-color: #a0f8af;" colspan="4" rowspan="1">
+          Home
+        </mat-grid-tile>
+        
+
+        <mat-grid-tile style="background-color: #a0cef8;" colspan="4" rowspan="5">
+
+          
+    <div class="mat-elevation-z8">
+
+      <mat-form-field>
+        <mat-label>Filter</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" />
+      </mat-form-field>
+
+      <table mat-table matSort [dataSource]="dataSource">
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>No.</th>
+          <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="first_name">
+          <th mat-header-cell *matHeaderCellDef>First</th>
+          <td mat-cell *matCellDef="let element">{{ element.fitst_name }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="last_name">
+          <th mat-header-cell *matHeaderCellDef>Last Name</th>
+          <td mat-cell *matCellDef="let element">{{ element.last_name }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef>Email</th>
+          <td mat-cell *matCellDef="let element">{{ element.email }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="avatar">
+          <th mat-header-cell *matHeaderCellDef>Anatar</th>
+          <td mat-cell *matCellDef="let element">{{ element.avatar }}</td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    </div>
+
+    <div *ngFor="let icarin of _Icarin" style="text-align: center;">
+      <h2>
+        API :
+        {{ icarin.email }}
+      </h2>
+      <h2>
+        ID :
+        {{ icarin.id }}
+      </h2>
+      <h2>
+        Name :
+        {{ icarin.first_name }} {{ icarin.last_name }}
+      </h2>
+      <h1>--------------------------------------</h1>
+    </div>
+
+        </mat-grid-tile>
+
+
+        <mat-grid-tile style="background-color: #f8c8a0;" colspan="4" rowspan="5">
+
+        </mat-grid-tile>
+
+        <mat-grid-tile style="background-color: #a87d59;" colspan="4" rowspan="1">
+
+        </mat-grid-tile>
+                
+      </mat-grid-list>
+      
+
+  </body>
+</html> -->
