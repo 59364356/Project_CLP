@@ -7,11 +7,11 @@ import { HistoryComponent } from '../app/history/history.component';
 const routes: Routes = [
   // { path: '**', component: LoginComponent },
   { path: 'main', component: MainComponent },
-  { path: '', component: LoginComponent},
+  // { path: '', component: LoginComponent},
   { path: 'history', component: HistoryComponent},
   { path: 'login', component: LoginComponent},
-    // { path: '', redirectTo: 'home', pathMatch: 'full' },
-  // { path: '**', redirectTo: 'home', pathMatch: 'full' },
+  { path: '', redirectTo: 'main', pathMatch: 'full' },
+  { path: '**', redirectTo: 'main', pathMatch: 'full' },
 
 ];
 
