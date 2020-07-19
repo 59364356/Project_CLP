@@ -145,26 +145,40 @@
 
                 <table style="background-color: #e6e6e6; "   mat-table matSort matSortActive="element.id" [dataSource]="door4InSource">
                   
-                  <ng-container matColumnDef="number_car">
-                    <th style="background-color: #8a8a8a;" mat-header-cell *matHeaderCellDef mat-sort-header>Number Car</th>
-                    <td  mat-cell *matCellDef="let element">{{ element.number_car }}</td>
+                  <ng-container matColumnDef="img_car">
+                    <th style="background-color: #8a8a8a;" mat-header-cell *matHeaderCellDef>ภาพรถยนต์</th>
+                    <td mat-cell *matCellDef="let element"><img style="width: 100px; height: 70px;" [src]="element.img_car" /></td>
                   </ng-container>
           
-                  <ng-container  matColumnDef="door">
-                    <th style="background-color: #8a8a8a;" mat-header-cell *matHeaderCellDef mat-sort-header>Door</th>
-                    <td  mat-cell *matCellDef="let element">{{ element.door }}</td>
+                  <ng-container  matColumnDef="img_licenplate">
+                    <th  style="background-color: #8a8a8a;" mat-header-cell *matHeaderCellDef >ป้ายทะเบียน</th>
+                    <td mat-cell *matCellDef="let element"><img style="width: 80px; height: 50px;" [src]="element.img_licenplate" /></td>
                   </ng-container>
           
-                  <ng-container  matColumnDef="gateway">
-                    <th style="background-color: #8a8a8a;" mat-header-cell *matHeaderCellDef  mat-sort-header>Gateway</th>
-                    <td mat-cell *matCellDef="let element">{{ element.gateway }}</td>
+                  <ng-container  matColumnDef="number_car">
+                    <th style="background-color: #8a8a8a;" mat-header-cell *matHeaderCellDef >เลขทะเบียน</th>
+                    <td mat-cell *matCellDef="let element">{{ element.number_car }}</td>
+                  </ng-container>
+          
+                  <ng-container  matColumnDef="province">
+                    <th style="background-color: #8a8a8a;" mat-header-cell *matHeaderCellDef>จังหวัด</th>
+                    <td mat-cell *matCellDef="let element">{{ element.province }}</td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="type_car">
+                    <th  style="background-color: #8a8a8a;" mat-header-cell *matHeaderCellDef >ประเภท</th>
+                    <td  mat-cell *matCellDef="let element">{{ element.type_car }}</td>
+                  </ng-container>
+          
+                  <ng-container  matColumnDef="color">
+                    <th style="background-color: #8a8a8a;" mat-header-cell *matHeaderCellDef >สี</th>
+                    <td  mat-cell *matCellDef="let element">{{ element.color }}</td>
                   </ng-container>
           
                   <ng-container  matColumnDef="datetime">
-                    <th style="background-color: #8a8a8a;" mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
+                    <th style="background-color: #8a8a8a;" mat-header-cell *matHeaderCellDef>เวลา</th>
                     <td mat-cell *matCellDef="let element">{{ element.datetime }}</td>
                   </ng-container>
-          
           
                   <tr mat-header-row *matHeaderRowDef="door4InColumns sticky: true"></tr>
                   <tr mat-row *matRowDef="let row; columns: door4InColumns"></tr>
@@ -176,9 +190,11 @@
                   
                 </table>
               </div>
-              <mat-paginator mat-footer-row  style="width: 100%;color:#ffffff; background-color: #8a8a8a;" [pageSizeOptions]="[3, 5, 10, 20]"   showFirstLastButtons></mat-paginator>
+              <mat-paginator #TableD4InPaginator="matPaginator"  [pageSizeOptions]="[2, 3, 5, 10, 20]" style="width: 100%;color:#ffffff; background-color: #8a8a8a;" mat-footer-row   showFirstLastButtons></mat-paginator>
             </div>
           </mat-grid-tile>
+
+          
 
           <!-- Grid 6 -->
           <mat-grid-tile colspan="2" rowspan="6">
@@ -193,23 +209,38 @@
 
                 <table style="background-color: #ffdf89; "   mat-table matSort matSortActive="element.id" [dataSource]="door4OutSource">
                   
-                  <ng-container matColumnDef="number_car">
-                    <th style="background-color: #f07b3f;" mat-header-cell *matHeaderCellDef mat-sort-header>Number Car</th>
-                    <td  mat-cell *matCellDef="let element">{{ element.number_car }}</td>
+                  <ng-container matColumnDef="img_car">
+                    <th style="background-color: #f07b3f;" mat-header-cell *matHeaderCellDef>ภาพรถยนต์</th>
+                    <td mat-cell *matCellDef="let element"><img style="width: 100px; height: 70px;" [src]="element.img_car" /></td>
                   </ng-container>
           
-                  <ng-container  matColumnDef="door">
-                    <th style="background-color: #f07b3f;" mat-header-cell *matHeaderCellDef mat-sort-header>Door</th>
-                    <td  mat-cell *matCellDef="let element">{{ element.door }}</td>
+                  <ng-container  matColumnDef="img_licenplate">
+                    <th style="background-color: #f07b3f;" mat-header-cell *matHeaderCellDef >ป้ายทะเบียน</th>
+                    <td mat-cell *matCellDef="let element"><img style="width: 80px; height: 50px;" [src]="element.img_licenplate" /></td>
                   </ng-container>
           
-                  <ng-container  matColumnDef="gateway">
-                    <th style="background-color: #f07b3f;" mat-header-cell *matHeaderCellDef  mat-sort-header>Gateway</th>
-                    <td mat-cell *matCellDef="let element">{{ element.gateway }}</td>
+                  <ng-container  matColumnDef="number_car">
+                    <th style="background-color: #f07b3f;" mat-header-cell *matHeaderCellDef >เลขทะเบียน</th>
+                    <td mat-cell *matCellDef="let element">{{ element.number_car }}</td>
+                  </ng-container>
+          
+                  <ng-container  matColumnDef="province">
+                    <th style="background-color: #f07b3f;" mat-header-cell *matHeaderCellDef>จังหวัด</th>
+                    <td mat-cell *matCellDef="let element">{{ element.province }}</td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="type_car">
+                    <th style="background-color: #f07b3f;" mat-header-cell *matHeaderCellDef >ประเภท</th>
+                    <td  mat-cell *matCellDef="let element">{{ element.type_car }}</td>
+                  </ng-container>
+          
+                  <ng-container  matColumnDef="color">
+                    <th style="background-color: #f07b3f;" mat-header-cell *matHeaderCellDef >สี</th>
+                    <td  mat-cell *matCellDef="let element">{{ element.color }}</td>
                   </ng-container>
           
                   <ng-container  matColumnDef="datetime">
-                    <th style="background-color: #f07b3f;" mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
+                    <th style="background-color: #f07b3f;" mat-header-cell *matHeaderCellDef>เวลา</th>
                     <td mat-cell *matCellDef="let element">{{ element.datetime }}</td>
                   </ng-container>
           
@@ -219,7 +250,7 @@
                   
                 </table>
               </div>
-            <mat-paginator mat-footer-row  style="width: 100%;color:#ffffff; background-color: #f07b3f;" [pageSizeOptions]="[5, 10, 20]"   showFirstLastButtons></mat-paginator>
+            <mat-paginator #TableD4OutPaginator="matPaginator" mat-footer-row  style="width: 100%;color:#ffffff; background-color: #f07b3f;" [pageSizeOptions]="[1,2,5, 10, 20]"   showFirstLastButtons></mat-paginator>
             </div>
           </mat-grid-tile>
 
@@ -282,27 +313,41 @@
 
               <table style="background-color: #e6e6e6; "   mat-table matSort matSortActive="element.id" [dataSource]="door5InSource">
                 
-                <ng-container matColumnDef="number_car">
-                  <th style="background-color: #8a8a8a;" mat-header-cell *matHeaderCellDef mat-sort-header>Number Car</th>
-                  <td  mat-cell *matCellDef="let element">{{ element.number_car }}</td>
+                <ng-container matColumnDef="img_car">
+                  <th style="background-color: #8a8a8a;" mat-header-cell *matHeaderCellDef>ภาพรถยนต์</th>
+                  <td mat-cell *matCellDef="let element"><img style="width: 100px; height: 70px;" [src]="element.img_car" /></td>
                 </ng-container>
         
-                <ng-container  matColumnDef="door">
-                  <th style="background-color: #8a8a8a;" mat-header-cell *matHeaderCellDef mat-sort-header>Door</th>
-                  <td  mat-cell *matCellDef="let element">{{ element.door }}</td>
+                <ng-container  matColumnDef="img_licenplate">
+                  <th  style="background-color: #8a8a8a;" mat-header-cell *matHeaderCellDef >ป้ายทะเบียน</th>
+                  <td mat-cell *matCellDef="let element"><img style="width: 80px; height: 50px;" [src]="element.img_licenplate" /></td>
                 </ng-container>
         
-                <ng-container  matColumnDef="gateway">
-                  <th style="background-color: #8a8a8a;" mat-header-cell *matHeaderCellDef  mat-sort-header>Gateway</th>
-                  <td mat-cell *matCellDef="let element">{{ element.gateway }}</td>
+                <ng-container  matColumnDef="number_car">
+                  <th style="background-color: #8a8a8a;" mat-header-cell *matHeaderCellDef >เลขทะเบียน</th>
+                  <td mat-cell *matCellDef="let element">{{ element.number_car }}</td>
+                </ng-container>
+        
+                <ng-container  matColumnDef="province">
+                  <th style="background-color: #8a8a8a;" mat-header-cell *matHeaderCellDef>จังหวัด</th>
+                  <td mat-cell *matCellDef="let element">{{ element.province }}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="type_car">
+                  <th  style="background-color: #8a8a8a;" mat-header-cell *matHeaderCellDef >ประเภท</th>
+                  <td  mat-cell *matCellDef="let element">{{ element.type_car }}</td>
+                </ng-container>
+        
+                <ng-container  matColumnDef="color">
+                  <th style="background-color: #8a8a8a;" mat-header-cell *matHeaderCellDef >สี</th>
+                  <td  mat-cell *matCellDef="let element">{{ element.color }}</td>
                 </ng-container>
         
                 <ng-container  matColumnDef="datetime">
-                  <th style="background-color: #8a8a8a;" mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
+                  <th style="background-color: #8a8a8a;" mat-header-cell *matHeaderCellDef>เวลา</th>
                   <td mat-cell *matCellDef="let element">{{ element.datetime }}</td>
                 </ng-container>
-        
-        
+    
                 <tr mat-header-row *matHeaderRowDef="door5InColumns sticky: true"></tr>
                 <tr mat-row *matRowDef="let row; columns: door5InColumns"></tr>
                 
@@ -313,7 +358,7 @@
                 
               </table>
             </div>
-            <mat-paginator mat-footer-row  style="width: 100%;color:#ffffff; background-color: #8a8a8a;" [pageSizeOptions]="[3, 5, 10, 20]"   showFirstLastButtons></mat-paginator>
+            <mat-paginator #TableD5InPaginator="matPaginator" [pageSizeOptions]="[1,3, 5, 10, 20]"   style="width: 100%;color:#ffffff; background-color: #8a8a8a;" mat-footer-row  showFirstLastButtons></mat-paginator>
           </div>
         </mat-grid-tile>
 
@@ -330,33 +375,47 @@
 
               <table style="background-color: #ffdf89; "   mat-table matSort matSortActive="element.id" [dataSource]="door5OutSource">
                 
-                <ng-container matColumnDef="number_car">
-                  <th style="background-color: #f07b3f;" mat-header-cell *matHeaderCellDef mat-sort-header>Number Car</th>
-                  <td  mat-cell *matCellDef="let element">{{ element.number_car }}</td>
+                <ng-container matColumnDef="img_car">
+                  <th style="background-color: #f07b3f;" mat-header-cell *matHeaderCellDef>ภาพรถยนต์</th>
+                  <td mat-cell *matCellDef="let element"><img style="width: 100px; height: 70px;" [src]="element.img_car" /></td>
                 </ng-container>
         
-                <ng-container  matColumnDef="door">
-                  <th style="background-color: #f07b3f;" mat-header-cell *matHeaderCellDef mat-sort-header>Door</th>
-                  <td  mat-cell *matCellDef="let element">{{ element.door }}</td>
+                <ng-container  matColumnDef="img_licenplate">
+                  <th style="background-color: #f07b3f;" mat-header-cell *matHeaderCellDef >ป้ายทะเบียน</th>
+                  <td mat-cell *matCellDef="let element"><img style="width: 80px; height: 50px;" [src]="element.img_licenplate" /></td>
                 </ng-container>
         
-                <ng-container  matColumnDef="gateway">
-                  <th style="background-color: #f07b3f;" mat-header-cell *matHeaderCellDef  mat-sort-header>Gateway</th>
-                  <td mat-cell *matCellDef="let element">{{ element.gateway }}</td>
+                <ng-container  matColumnDef="number_car">
+                  <th style="background-color: #f07b3f;" mat-header-cell *matHeaderCellDef >เลขทะเบียน</th>
+                  <td mat-cell *matCellDef="let element">{{ element.number_car }}</td>
+                </ng-container>
+        
+                <ng-container  matColumnDef="province">
+                  <th style="background-color: #f07b3f;" mat-header-cell *matHeaderCellDef>จังหวัด</th>
+                  <td mat-cell *matCellDef="let element">{{ element.province }}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="type_car">
+                  <th style="background-color: #f07b3f;" mat-header-cell *matHeaderCellDef >ประเภท</th>
+                  <td  mat-cell *matCellDef="let element">{{ element.type_car }}</td>
+                </ng-container>
+        
+                <ng-container  matColumnDef="color">
+                  <th style="background-color: #f07b3f;" mat-header-cell *matHeaderCellDef >สี</th>
+                  <td  mat-cell *matCellDef="let element">{{ element.color }}</td>
                 </ng-container>
         
                 <ng-container  matColumnDef="datetime">
-                  <th style="background-color: #f07b3f;" mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
+                  <th style="background-color: #f07b3f;" mat-header-cell *matHeaderCellDef>เวลา</th>
                   <td mat-cell *matCellDef="let element">{{ element.datetime }}</td>
                 </ng-container>
-        
-        
+      
                 <tr mat-header-row *matHeaderRowDef="door5OutColumns sticky: true"></tr>
                 <tr mat-row *matRowDef="let row; columns: door5OutColumns"></tr>
                 
               </table>
             </div>
-          <mat-paginator mat-footer-row  style="width: 100%;color:#ffffff; background-color: #f07b3f;" [pageSizeOptions]="[5, 10, 20]"   showFirstLastButtons></mat-paginator>
+          <mat-paginator #TableD5OutPaginator="matPaginator" mat-footer-row  style="width: 100%;color:#ffffff; background-color: #f07b3f;" [pageSizeOptions]="[1, 2, 5, 10, 20]"   showFirstLastButtons></mat-paginator>
           </div>
         </mat-grid-tile>
 

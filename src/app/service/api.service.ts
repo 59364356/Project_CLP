@@ -26,7 +26,7 @@ export class ApiService {
   api_Door_5 = 'https://cam-see-car.herokuapp.com/api/history_car/door?door=ประตู5';
 
 
-  api_history_car = 'https://cam-see-car.herokuapp.com/api/history_car';
+  api_hisCar = 'https://cam-see-car.herokuapp.com/api/history_car';
   apiDoor4_IN = 'https://cam-see-car.herokuapp.com/api/history_car?door=ประตู4&gateway=เข้า';
   apiDoor4_OUT = 'https://cam-see-car.herokuapp.com/api/history_car?door=ประตู4&gateway=ออก';
   apiDoor5_IN = 'https://cam-see-car.herokuapp.com/api/history_car?door=ประตู5&gateway=เข้า';
@@ -44,7 +44,7 @@ export class ApiService {
   constructor(private _httpClient: HttpClient) { }
 
   getHisCar() {
-    return this._httpClient.get<history_car>(this.api_history_car)
+    return this._httpClient.get<history_car>(this.api_hisCar)
   }
   getDoor4_IN() {
     return this._httpClient.get<door4_in>(this.apiDoor4_IN)

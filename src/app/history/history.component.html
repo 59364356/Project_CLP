@@ -16,25 +16,51 @@
 
 
                 <div class="example-container">
-                    <table  mat-table matSort  matSortActive="element.id" [dataSource]="hisCarSource">
+                    <table  mat-table  matSortActive="element.id" [dataSource]="hisCarSource">
 
-                        <ng-container matColumnDef="number_car">
-                            <th  mat-header-cell *matHeaderCellDef mat-sort-header>Number Car</th>
-                            <td  mat-cell *matCellDef="let element">{{ element.number_car }}</td>
+                        <ng-container matColumnDef="img_car">
+                            <th  mat-header-cell *matHeaderCellDef>Image Car</th>
+                            <td mat-cell *matCellDef="let element"><img style="width: 100px; height: 70px;" [src]="element.img_car" /></td>
+                          </ng-container>
+                  
+                          <ng-container  matColumnDef="img_licenplate">
+                            <!--  display: flex; align-items: center; justify-content: center;width: 100%; height: 100%;" -->
+                            <th  mat-header-cell *matHeaderCellDef >License Plate</th>
+                            <td mat-cell *matCellDef="let element"><img style="width: 80px; height: 50px;" [src]="element.img_licenplate" /></td>
+                          </ng-container>
+                  
+                          <ng-container  matColumnDef="number_car">
+                            <th mat-header-cell *matHeaderCellDef >Number Car</th>
+                            <td mat-cell *matCellDef="let element">{{ element.number_car }}</td>
+                          </ng-container>
+                  
+                          <ng-container  matColumnDef="province">
+                            <th mat-header-cell *matHeaderCellDef>Province</th>
+                            <td mat-cell *matCellDef="let element">{{ element.province }}</td>
+                          </ng-container>
+
+                          <ng-container matColumnDef="type_car">
+                            <th  mat-header-cell *matHeaderCellDef >Type</th>
+                            <td  mat-cell *matCellDef="let element">{{ element.type_car }}</td>
+                          </ng-container>
+                  
+                          <ng-container  matColumnDef="color">
+                            <th mat-header-cell *matHeaderCellDef >Color</th>
+                            <td  mat-cell *matCellDef="let element">{{ element.color }}</td>
                           </ng-container>
                   
                           <ng-container  matColumnDef="door">
-                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Door</th>
-                            <td  mat-cell *matCellDef="let element">{{ element.door }}</td>
+                            <th mat-header-cell *matHeaderCellDef >Door</th>
+                            <td mat-cell *matCellDef="let element">{{ element.door }}</td>
                           </ng-container>
-                  
+
                           <ng-container  matColumnDef="gateway">
-                            <th mat-header-cell *matHeaderCellDef  mat-sort-header>Gateway</th>
+                            <th mat-header-cell *matHeaderCellDef>Gateway</th>
                             <td mat-cell *matCellDef="let element">{{ element.gateway }}</td>
-                          </ng-container>
+                          </ng-container>                          
                   
                           <ng-container  matColumnDef="datetime">
-                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
+                            <th mat-header-cell *matHeaderCellDef>Date</th>
                             <td mat-cell *matCellDef="let element">{{ element.datetime }}</td>
                           </ng-container>
                     
@@ -78,7 +104,7 @@
                     
                     </table>
                 </div>
-                <mat-paginator  mat-footer-row style="width: 100%; color:#ffffff; background-color: #f07b3f;" [pageSizeOptions]="[5, 10, 20]"   showFirstLastButtons></mat-paginator>
+                <mat-paginator  mat-footer-row style="width: 100%; color:#ffffff; background-color: #f07b3f;" [pageSizeOptions]="[3, 5, 10, 20]"   showFirstLastButtons></mat-paginator>
             </div>
 
         </mat-grid-tile>

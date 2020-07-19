@@ -19,7 +19,7 @@ export class HistoryComponent implements OnInit {
   dataSourceEmpty = []
 
   _hisCar : history_car[];
-  hisCarColumns : string[] = ['number_car', 'door', 'gateway', 'datetime'];
+  hisCarColumns : string[] = ['img_car', 'img_licenplate', 'number_car', 'province', 'type_car', 'color', 'door', 'gateway', 'datetime'];
   hisCarSource;
   hisCarSourceEmpty = [];
 
@@ -57,9 +57,9 @@ export class HistoryComponent implements OnInit {
 
   getHisCar() {
     this.apiService.getHisCar().subscribe((_data: any) =>{
-      this._hisCar = _data;
+      this._hisCar = _data['data'];
       this.hisCarSource = new MatTableDataSource(this._hisCar);
-      this.hisCarSource.sort = this.sort;
+      // this.hisCarSource.sort = this.sort;
       this.hisCarSource.paginator = this.paginator;
       console.log(this._hisCar);
     })
