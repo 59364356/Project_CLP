@@ -25,6 +25,9 @@
                         <input name="password" [(ngModel)]="mPassword" matInput type="password"  style="padding-left: 5%;">
                     </mat-form-field>
                         <button style="width: 30%;" type="submit" (click)="onClickLogin()" mat-raised-button color="primary" >Login</button>
+                        <button style="width: 30%;" type="submit" (click)="sendLogin()" mat-raised-button color="warn" >POST</button>
+
+                        <h2>{{data}}</h2>
             
                 </div>
                 <!-- </div> -->

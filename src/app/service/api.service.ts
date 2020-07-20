@@ -1,13 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Icarin } from '../interface/car-in';
 import { IcarOut } from '../interface/carOut';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { numberCar } from '../interface/numCar';
 import { history_car } from '../interface/history_car';
 import { door4_in } from '../interface/door4_in';
 import { door4_out } from '../interface/door4_out';
 import { door5_in } from '../interface/door5_in';
 import { door5_out } from '../interface/door5_out';
+import { postLogin, respLogin } from '../interface/postLogin';
+import { Observable, throwError, of } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 
 @Injectable({
@@ -31,6 +34,15 @@ export class ApiService {
   apiDoor4_OUT = 'https://cam-see-car.herokuapp.com/api/history_car?door=ประตู4&gateway=ออก';
   apiDoor5_IN = 'https://cam-see-car.herokuapp.com/api/history_car?door=ประตู5&gateway=เข้า';
   apiDoor5_OUT = 'https://cam-see-car.herokuapp.com/api/history_car?door=ประตู5&gateway=ออก';
+
+  apiPostLogin: string = 'https://cam-see-car.herokuapp.com/api/user/login';
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type' : 'application/json',
+      'Authorization' : 'my-auth-token'
+    })
+  };
+  
 
 
 
@@ -57,6 +69,10 @@ export class ApiService {
   }
   getDoor5_OUT() {
     return this._httpClient.get<door5_out>(this.apiDoor5_OUT)
+  }
+
+  addPost(postL: postLogin) {
+    return this._httpClient.post(this.apiPostLogin, postL, this.httpOptions);
   }
 
 

@@ -45,7 +45,7 @@ export class MainComponent implements OnInit, AfterViewInit {
   // numCarSourceEmpty = [];
 
   _door4In : door4_in[];
-  door4InColumns : string[] = ['img_car', 'img_licenplate', 'number_car', 'province', 'type_car', 'color', 'datetime'];
+  door4InColumns : string[] = ['img_car', 'img_licenplate', 'number_car', 'province', 'type_car', 'color'];
   door4InSource;
   door4InSourceEmpty = [];
 
