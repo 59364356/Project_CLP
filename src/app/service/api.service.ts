@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Icarin } from '../interface/car-in';
 import { IcarOut } from '../interface/carOut';
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpErrorResponse, HttpClientModule } from '@angular/common/http';
 import { numberCar } from '../interface/numCar';
 import { history_car } from '../interface/history_car';
 import { door4_in } from '../interface/door4_in';
@@ -10,7 +10,7 @@ import { door5_in } from '../interface/door5_in';
 import { door5_out } from '../interface/door5_out';
 import { postLogin, respLogin } from '../interface/postLogin';
 import { Observable, throwError, of } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, retry  } from 'rxjs/operators';
 
 
 @Injectable({
@@ -29,17 +29,21 @@ export class ApiService {
   api_Door_5 = 'https://cam-see-car.herokuapp.com/api/history_car/door?door=ประตู5';
 
 
+  api_LCT = 'https://cam-see-car.herokuapp.com/api/';
+
   api_hisCar = 'https://cam-see-car.herokuapp.com/api/history_car';
   apiDoor4_IN = 'https://cam-see-car.herokuapp.com/api/history_car?door=ประตู4&gateway=เข้า';
   apiDoor4_OUT = 'https://cam-see-car.herokuapp.com/api/history_car?door=ประตู4&gateway=ออก';
   apiDoor5_IN = 'https://cam-see-car.herokuapp.com/api/history_car?door=ประตู5&gateway=เข้า';
   apiDoor5_OUT = 'https://cam-see-car.herokuapp.com/api/history_car?door=ประตู5&gateway=ออก';
 
-  apiPostLogin: string = 'https://cam-see-car.herokuapp.com/api/user/login';
+  apiSTPostLogin= 'https://cam-see-car.herokuapp.com/api/admin/login';
+
+  apiPostLogin: string = 'https://cam-see-car.herokuapp.com/api/admin/login';
   httpOptions = {
     headers: new HttpHeaders({
-      'Content-Type' : 'application/json',
-      'Authorization' : 'my-auth-token'
+      'Content-Type':  'application/json',
+      'Authorization': 'my-auth-token'
     })
   };
   
@@ -55,24 +59,48 @@ export class ApiService {
 
   constructor(private _httpClient: HttpClient) { }
 
-  getHisCar() {
-    return this._httpClient.get<history_car>(this.api_hisCar)
+  getHisCar(): Observable<history_car[]> {
+    return this._httpClient.get<history_car[]>(this.api_LCT + 'history_car')
+    // .pipe(
+    //   retry(3),
+    //   catchError(this.handleError)
+    // );
   }
   getDoor4_IN() {
-    return this._httpClient.get<door4_in>(this.apiDoor4_IN)
+    return this._httpClient.get<door4_in>(this.api_LCT + 'history_car?door=ประตู4&gateway=เข้า')
+    // .pipe(
+    //   retry(3),
+    //   catchError(this.handleError)
+    // );
   }
   getDoor4_OUT() {
-    return this._httpClient.get<door4_out>(this.apiDoor4_OUT)
+    return this._httpClient.get<door4_out>(this.api_LCT + 'history_car?door=ประตู4&gateway=ออก')
   }
   getDoor5_IN() {
-    return this._httpClient.get<door5_in>(this.apiDoor5_IN)
+    return this._httpClient.get<door5_in>(this.api_LCT + 'history_car?door=ประตู5&gateway=เข้า')
   }
   getDoor5_OUT() {
-    return this._httpClient.get<door5_out>(this.apiDoor5_OUT)
+    return this._httpClient.get<door5_out>(this.api_LCT + 'history_car?door=ประตู5&gateway=ออก')
+  }
+  checkLogin(username, password) {
+    // return this._httpClient.post<postLogin>(this.apiSTPostLogin, {
+    //   'username': username,
+    //   'password':password
+    // })
+    this._httpClient.post('https://cam-see-car.herokuapp.com/api/admin/login', {
+        'username': username,
+        'password':password
+      })
   }
 
-  addPost(postL: postLogin) {
+  addPost(postL: postLogin){
     return this._httpClient.post(this.apiPostLogin, postL, this.httpOptions);
+  }
+  checkPost() {
+    return this._httpClient.post(this.apiPostLogin, null, {observe:'response'});
+  }
+  statusPost(inLogin: respLogin): Observable<any>{
+    return this._httpClient.post(this.apiSTPostLogin, inLogin, {observe:'response'})
   }
 
 

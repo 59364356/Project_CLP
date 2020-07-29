@@ -1,6 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+import { AuthGuard } from './auth.guard';
+import { AuthService } from './service/auth.service';
+import { Routes, RouterModule } from '@angular/router';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MainComponent } from './main/main.component';
@@ -31,6 +35,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatSelectModule} from '@angular/material/select';
 
+import { ScrollingModule } from '@angular/cdk/scrolling';
 
 
 @NgModule({
@@ -44,6 +49,7 @@ import {MatSelectModule} from '@angular/material/select';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    RouterModule,
     BrowserAnimationsModule,
     MatButtonModule,
     MatGridListModule,
@@ -53,9 +59,12 @@ import {MatSelectModule} from '@angular/material/select';
     MatSortModule,MatPaginatorModule,MatProgressSpinnerModule,
     MatListModule,MatTabsModule,MatButtonToggleModule,MatToolbarModule,MatRadioModule,
     MatDatepickerModule,MatNativeDateModule,MatSelectModule,
+    ScrollingModule,
   ],
   providers: [
-    MatDatepickerModule
+    MatDatepickerModule,
+    AuthGuard,
+    AuthService
   ],
   bootstrap: [
     AppComponent
