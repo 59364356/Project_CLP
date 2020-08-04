@@ -1,6 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
+import {MatDialog} from '@angular/material/dialog';
 import { MatSort } from '@angular/material/sort';
 import { Icarin } from '../interface/car-in';
 import { numberCar } from '../interface/numCar';
@@ -34,6 +35,9 @@ import { ViewChildren, AfterViewInit, QueryList } from '@angular/core';
 })
 export class MainComponent implements OnInit, AfterViewInit {
 
+  constructor(private apiService:ApiService, public dialog: MatDialog) {
+  }
+
   // _Icarin: Icarin[];
   // displayedColumns: string[] = ['id','first_name', 'last_name', 'email', 'avatar'];
   // dataSource;
@@ -45,7 +49,7 @@ export class MainComponent implements OnInit, AfterViewInit {
   // numCarSourceEmpty = [];
 
   _door4In : door4_in[];
-  door4InColumns : string[] = ['img_car', 'img_licenplate', 'number_car', 'province', 'type_car', 'color'];
+  door4InColumns : string[] = ['img_car', 'img_licenplate', 'number_car', 'province', 'type_car', 'color', 'datetime'];
   door4InSource;
   door4InSourceEmpty = [];
 
@@ -66,7 +70,7 @@ export class MainComponent implements OnInit, AfterViewInit {
 
   INCAR = "เข้า";
   OUTCAR = "ออก";
-  test = [];
+
   
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
@@ -77,21 +81,6 @@ export class MainComponent implements OnInit, AfterViewInit {
   @ViewChild('TableD5InPaginator', {static: true}) tableD5InPaginator: MatPaginator;
   @ViewChild('TableD5OutPaginator', {static: true}) tableD5OutPaginator: MatPaginator;
 
-
-  
-
-  // @ViewChildren(MatPaginator) paginator = new QueryList<MatPaginator>();
-  // @ViewChildren(MatSort) sort = new QueryList<MatSort>();
-  
-  // applyFilter(event: Event) {
-  //   const filterValue = (event.target as HTMLInputElement).value;
-  //   this.dataSource.filter = filterValue.trim().toLowerCase();
-  // }
-
-  // numCarFilter(event: Event) {
-  //   const filterValue = (event.target as HTMLInputElement).value;
-  //   this.numCarSource.filter = filterValue.trim().toLowerCase();
-  // }
 
   door4InSearch(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -110,22 +99,9 @@ export class MainComponent implements OnInit, AfterViewInit {
     this.door5OutSource.filter = filterValue.trim().toLowerCase();
   }
 
-  constructor(private apiService:ApiService) {
-    // this.door5InSource = new MatTableDataSource<door5_in>();
-    // this.door5InSource = new MatTableDataSource<RoleElement>(ROLE_ELEMENT_DATA);
-   }
 
-  ngAfterViewInit() {
-    // this.door4InSource.sort = this.sort.toArray()[0];
-    // this.door4InSource.paginator = this.paginator.toArray()[0];
-    // this.door4OutSource.sort = this.sort2.toArray()[1];
-    // this.door4OutSource.paginator = this.paginator2.toArray()[1];
 
-    // this.door5InSource.sort = this.sort.toArray()[2];
-    // this.door5InSource.paginator = this.paginator.toArray()[2];
-    // this.door5OutSource.sort = this.sort2.toArray()[3];
-    // this.door5OutSource.paginator = this.paginator2.toArray()[3];
-  }
+  ngAfterViewInit() { }
 
   ngOnInit() {
     

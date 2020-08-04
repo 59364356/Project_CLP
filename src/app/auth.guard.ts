@@ -18,12 +18,12 @@ export class AuthGuard implements CanActivate {
 
       if(this.loginCom.cLogin == true){
         // this._router.navigate(['main'])
-        return false
+        return true
         
       }
       if(this.loginCom.cLogin == false){
         this._router.navigate(['login'])
-        return true
+        return false
       }
 
 

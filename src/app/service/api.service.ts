@@ -31,11 +31,11 @@ export class ApiService {
 
   api_LCT = 'https://cam-see-car.herokuapp.com/api/';
 
-  api_hisCar = 'https://cam-see-car.herokuapp.com/api/history_car';
-  apiDoor4_IN = 'https://cam-see-car.herokuapp.com/api/history_car?door=ประตู4&gateway=เข้า';
-  apiDoor4_OUT = 'https://cam-see-car.herokuapp.com/api/history_car?door=ประตู4&gateway=ออก';
-  apiDoor5_IN = 'https://cam-see-car.herokuapp.com/api/history_car?door=ประตู5&gateway=เข้า';
-  apiDoor5_OUT = 'https://cam-see-car.herokuapp.com/api/history_car?door=ประตู5&gateway=ออก';
+  api_hisCar = 'https://cam-see-car.herokuapp.com/api/history_car/all';
+  // apiDoor4_IN = 'https://cam-see-car.herokuapp.com/api/history_car?door=ประตู4&gateway=เข้า';
+  // apiDoor4_OUT = 'https://cam-see-car.herokuapp.com/api/history_car?door=ประตู4&gateway=ออก';
+  // apiDoor5_IN = 'https://cam-see-car.herokuapp.com/api/history_car?door=ประตู5&gateway=เข้า';
+  // apiDoor5_OUT = 'https://cam-see-car.herokuapp.com/api/history_car?door=ประตู5&gateway=ออก';
 
   apiSTPostLogin= 'https://cam-see-car.herokuapp.com/api/admin/login';
 
@@ -60,29 +60,82 @@ export class ApiService {
   constructor(private _httpClient: HttpClient) { }
 
   getHisCar(): Observable<history_car[]> {
-    return this._httpClient.get<history_car[]>(this.api_LCT + 'history_car')
-    // .pipe(
-    //   retry(3),
-    //   catchError(this.handleError)
-    // );
+    return this._httpClient.get<history_car[]>(this.api_LCT + 'history_car/all')
+    .pipe(
+      retry(3),
+      catchError(this.handleError)
+    );
   }
-  getDoor4_IN() {
+
+  getDoor4_IN(){
     return this._httpClient.get<door4_in>(this.api_LCT + 'history_car?door=ประตู4&gateway=เข้า')
-    // .pipe(
-    //   retry(3),
-    //   catchError(this.handleError)
-    // );
+    .pipe(
+      retry(3),
+      catchError(this.handleError)
+    );
   }
+  getDoor4_IN_ByID(id:string){
+    return this._httpClient.get<door4_in>(this.api_LCT + 'history_car?door=ประตู4&gateway=เข้า' + id)
+    .pipe(
+      retry(3),
+      catchError(this.handleError)
+    );
+  }
+  
   getDoor4_OUT() {
     return this._httpClient.get<door4_out>(this.api_LCT + 'history_car?door=ประตู4&gateway=ออก')
+    .pipe(
+      retry(3),
+      catchError(this.handleError)
+    );
   }
+  getDoor4_OUT_ByID(id:string){
+    return this._httpClient.get<door4_out>(this.api_LCT + 'history_car?door=ประตู4&gateway=ออก' + id)
+    .pipe(
+      retry(3),
+      catchError(this.handleError)
+    );
+  }
+
   getDoor5_IN() {
     return this._httpClient.get<door5_in>(this.api_LCT + 'history_car?door=ประตู5&gateway=เข้า')
+    .pipe(
+      retry(3),
+      catchError(this.handleError)
+    );
   }
+  getDoor5_IN_ByID(id:string){
+    return this._httpClient.get<door5_in>(this.api_LCT + 'history_car?door=ประตู5&gateway=เข้า' + id)
+    .pipe(
+      retry(3),
+      catchError(this.handleError)
+    );
+  }
+
   getDoor5_OUT() {
     return this._httpClient.get<door5_out>(this.api_LCT + 'history_car?door=ประตู5&gateway=ออก')
+    .pipe(
+      retry(3),
+      catchError(this.handleError)
+    );
   }
-  checkLogin(username, password) {
+  getDoor5_OUT_ByID(id:string){
+    return this._httpClient.get<door5_out>(this.api_LCT + 'history_car?door=ประตู5&gateway=ออก' + id)
+    .pipe(
+      retry(3),
+      catchError(this.handleError)
+    );
+  }
+
+
+  
+
+
+
+
+
+
+  checkLogin(username:string, password:string) {
     // return this._httpClient.post<postLogin>(this.apiSTPostLogin, {
     //   'username': username,
     //   'password':password
@@ -124,5 +177,29 @@ export class ApiService {
   getTest() {
     return this._httpClient.get<numberCar[]>('https://cam-see-car.herokuapp.com/api/admin/login?username=adminz12345&password=passwordz987654321');
   }
+
+
+
+  private handleError(error: HttpErrorResponse) {
+    if (error.error instanceof ErrorEvent) {
+      // A client-side or network error occurred. Handle it accordingly.
+      console.error('An error occurred:', error.error.message);
+    } else {
+      // The backend returned an unsuccessful response code.
+      // The response body may contain clues as to what went wrong,
+      console.error(
+        `Backend returned code ${error.status}, ` +
+        `body was: ${error.error}`);
+    }
+    // return an observable with a user-facing error message
+    return throwError(
+      'Something bad happened; please try again later.');
+  };
+
+
+
+
+
+
 
 }

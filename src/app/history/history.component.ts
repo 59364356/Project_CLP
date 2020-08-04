@@ -19,12 +19,14 @@ export class HistoryComponent implements OnInit {
   dataSourceEmpty = []
 
   _hisCar : history_car[];
-  hisCarColumns : string[] = ['img_car', 'img_licenplate', 'number_car', 'province', 'type_car', 'color', 'door', 'gateway', 'datetime'];
+  _hisCar2 : history_car[];
+  hisCarColumns : string[] = ['img_car', 'img_licenplate', 'number_car', 'province', 'type_car', 'color', 'door', 'gateway', 'datetime', 'user_name'];
   hisCarSource;
   hisCarSourceEmpty = [];
 
   INCAR = "เข้า";
   OUTCAR = "ออก";
+  cuser = [];
 
   
 
@@ -52,6 +54,9 @@ export class HistoryComponent implements OnInit {
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
       console.log(this._IcarOut);
+
+    }, err =>{
+      console.log(err);
     })
   }
 
@@ -62,6 +67,9 @@ export class HistoryComponent implements OnInit {
       // this.hisCarSource.sort = this.sort;
       this.hisCarSource.paginator = this.paginator;
       console.log(this._hisCar);
+
+    }, err =>{
+      console.log(err);
     })
     
   }

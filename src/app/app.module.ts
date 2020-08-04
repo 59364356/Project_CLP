@@ -34,6 +34,7 @@ import {MatRadioModule} from '@angular/material/radio';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatSelectModule} from '@angular/material/select';
+import {MatDialogModule} from '@angular/material/dialog';
 
 import { ScrollingModule } from '@angular/cdk/scrolling';
 
@@ -59,7 +60,7 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
     MatSortModule,MatPaginatorModule,MatProgressSpinnerModule,
     MatListModule,MatTabsModule,MatButtonToggleModule,MatToolbarModule,MatRadioModule,
     MatDatepickerModule,MatNativeDateModule,MatSelectModule,
-    ScrollingModule,
+    ScrollingModule,MatDialogModule,
   ],
   providers: [
     MatDatepickerModule,
