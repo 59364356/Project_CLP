@@ -37,6 +37,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatDialogModule} from '@angular/material/dialog';
 
 import { ScrollingModule } from '@angular/cdk/scrolling';
+import { MainDialogComponent } from './main-dialog/main-dialog.component';
 
 
 @NgModule({
@@ -44,7 +45,8 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
     AppComponent,
     MainComponent,
     LoginComponent,
-    HistoryComponent
+    HistoryComponent,
+    MainDialogComponent
   ],
   imports: [
     BrowserModule,

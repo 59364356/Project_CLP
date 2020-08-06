@@ -10,6 +10,7 @@ import { door4_in } from '../interface/door4_in';
 import { door4_out } from '../interface/door4_out';
 import { door5_in } from '../interface/door5_in';
 import { door5_out } from '../interface/door5_out';
+import { MainDialogComponent } from '../main-dialog/main-dialog.component';
 // import { Observable } from 'rxjs/Observable';
 import { Observable } from 'rxjs';
 
@@ -102,6 +103,12 @@ export class MainComponent implements OnInit, AfterViewInit {
 
 
   ngAfterViewInit() { }
+
+
+  openDialog() {
+    this.dialog.open(MainDialogComponent);
+  }
+
 
   ngOnInit() {
     

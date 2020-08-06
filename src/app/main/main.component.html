@@ -112,7 +112,9 @@
 
           <!-- Grid 3 -->
           <mat-grid-tile colspan="2" rowspan="3">
-
+            <div  style=" background-color: #e6e6e6; width: 98%; height: 95%; ">
+              <button mat-raised-button (click)="openDialog()" color="accent">Accent</button>
+            </div>
           </mat-grid-tile>
           <!-- Grid 4 -->
           <mat-grid-tile colspan="2" rowspan="3">
@@ -120,6 +122,12 @@
               <!-- <div *ngFor="let ts of _numCar">
                 <h2>{{ts.number_car}}</h2>
               </div> -->
+
+              <!-- <div *ngFor='let test of _door4In'>
+                <mat-card>
+                     <h2>{{test.color}}</h2>
+                </mat-card>
+             </div> -->
 
             </div>
           </mat-grid-tile>
