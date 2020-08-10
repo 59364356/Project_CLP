@@ -12,7 +12,7 @@
                 <a routerLink="login">login</a>
             </mat-card> -->
 
-            <mat-card class="mat-elevation-z8" style="background-color:rgba(255, 255, 255, 0.9); width:50%; height:35%; display:flex;  flex-direction: column; ">
+            <mat-card class="mat-elevation-z8" style="background-color:rgba(255, 255, 255, 0.9); min-width:50%; min-height:30%; display:flex;  flex-direction: column; ">
                 <!-- <div style="background-color: #a0f8a0;width:100%; height:90%; display:flex; align-items:center; justify-content:center;flex-direction: column;"> -->
                 <!-- <mat-card-header style="background-color: #b2cbf7; "> -->
                     <div style=" width:100%; height: 20%; display:flex; align-items:center;justify-content:center; font-size: 2em;">
@@ -21,17 +21,17 @@
                 <!-- </mat-card-header> -->
 
                 
-                <form style=" margin-top: 5%; width: 100%; height: 60%; display:flex; align-items: center; flex-direction:column; justify-content:center;">
+                <form  style=" margin-top: 2%; width: 100%; height: 60%; display:flex; align-items: center; flex-direction:column; justify-content:center;">
                     <mat-form-field appearance="outline" color="warn" style="width: 85%; " >
                         <!-- <mat-icon matPrefix>person</mat-icon> -->
                         <mat-label style="padding-left: 5%;">Username</mat-label>
-                        <input name="username" [(ngModel)]="mUsername" id="username" matInput  style="padding-left: 5%;">
+                        <input name="username" [(ngModel)]="mUsername" placeholder="Username" id="username" matInput  style="padding-left: 5%;">
                     </mat-form-field>
 
                     <mat-form-field appearance="outline" color="warn" style="width: 85%;">
                         <!-- <mat-icon matPrefix>lock</mat-icon> -->
                         <mat-label style="padding-left: 5%;">Password</mat-label>
-                        <input name="password" [(ngModel)]="mPassword" id="password" matInput type="password"  style="padding-left: 5%;">
+                        <input name="password" [(ngModel)]="mPassword" placeholder="Password" id="password" matInput type="password"  style="padding-left: 5%;">
                     </mat-form-field>
                         <!-- <button style="width: 30%;" type="submit" id="submit" (click)="postLoginStatus()" mat-raised-button color="primary" >Login</button> -->
                         <!-- <button style="width: 30%;" type="submit" (click)="checkLogin()" mat-raised-button color="warn" >POST</button> -->
@@ -39,8 +39,18 @@
                 </form>
                 <mat-card-actions>
                     <button style="width: 35%; height: 100%;" type="submit" id="submit" (click)="postLoginStatus()" mat-raised-button color="primary" >Login</button>
+                    <!-- <button style="width: 35%; height: 100%;" type="submit" id="submit" (click)="loginAdmin()" mat-raised-button color="primary" >Login</button> -->
                 </mat-card-actions>
                 <!-- </div> -->
+            </mat-card>
+            <mat-card>
+                <button style="width: 35%; height: 100%;" (click)="localC()" mat-raised-button color="primary" >Login</button>
+                <label>00</label>
+                <!-- <form (submit)="loginAdmin($event)">
+                    <input type="text" placeholder="Username">
+                    <input type="password" placeholder="Password">
+                    <input type="submit" value="Submit">
+                </form> -->
             </mat-card>
         </div>
     </div>

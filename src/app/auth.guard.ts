@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { CanActivate, CanActivateChild, CanDeactivate, CanLoad, Route, UrlSegment, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Router, NavigationStart  } from '@angular/router';
-import { LoginComponent } from './login/login.component';
 import { AuthService } from './service/auth.service';
 
 @Injectable({
@@ -10,21 +9,53 @@ import { AuthService } from './service/auth.service';
 })
 export class AuthGuard implements CanActivate {
   
-  constructor(private _router: Router, private authService: AuthService, private loginCom: LoginComponent){}
+  constructor(private _router: Router, private authService: AuthService){}
 
     canActivate(
-    next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
+      route: ActivatedRouteSnapshot,
+      state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
+      // return false;
+      // return this.authService.isLoggedIn;
+      
+      if (localStorage.getItem('LoginAdmin')) {
+        // logged in so return true
+        return true;
+      }
 
-      if(this.loginCom.cLogin == true){
-        // this._router.navigate(['main'])
-        return true
+      // not logged in so redirect to login page with the return url
+      this._router.navigate(['/login'], { queryParams: { returnUrl: state.url }});
+      return false;
+
+
+      // if (this.authService.cLogin == true){
+      //   return true
+      // }
+      // else{
+      //   this._router.navigate(['/login'])
+      //   return false
+      // }
+
+
+    //   if (localStorage.getItem('currentUser')) {
+    //     // logged in so return true
+    //     return true;
+    // }
+
+    // // not logged in so redirect to login page with the return url
+    // this._router.navigate(['/login'], { queryParams: { returnUrl: state.url }});
+    // return false;
+
+
+
+      // if(this.loginCom.cLogin == true){
+      //   // this._router.navigate(['main'])
+      //   return true
         
-      }
-      if(this.loginCom.cLogin == false){
-        this._router.navigate(['login'])
-        return false
-      }
+      // }
+      // if(this.loginCom.cLogin == false){
+      //   this._router.navigate(['login'])
+      //   return false
+      // }
 
 
     // return this._authguard.isLoggedIn;

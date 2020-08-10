@@ -26,5 +26,9 @@ export class AppComponent {
         }
       });
     }
+
+    logoutLocal(){
+      localStorage.removeItem('LoginAdmin')
+    }
 }
 

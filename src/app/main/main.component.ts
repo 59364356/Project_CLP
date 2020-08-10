@@ -1,7 +1,8 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
+import { Router, NavigationStart  } from '@angular/router';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
-import {MatDialog} from '@angular/material/dialog';
+import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import { MatSort } from '@angular/material/sort';
 import { Icarin } from '../interface/car-in';
 import { numberCar } from '../interface/numCar';
@@ -36,7 +37,7 @@ import { ViewChildren, AfterViewInit, QueryList } from '@angular/core';
 })
 export class MainComponent implements OnInit, AfterViewInit {
 
-  constructor(private apiService:ApiService, public dialog: MatDialog) {
+  constructor(private router: Router, private apiService:ApiService, public dialog: MatDialog) {
   }
 
   // _Icarin: Icarin[];
@@ -50,7 +51,7 @@ export class MainComponent implements OnInit, AfterViewInit {
   // numCarSourceEmpty = [];
 
   _door4In : door4_in[];
-  door4InColumns : string[] = ['img_car', 'img_licenplate', 'number_car', 'province', 'type_car', 'color', 'datetime'];
+  door4InColumns : string[] = ['img_car', 'img_licenplate', 'number_car', 'province', 'type_car', 'color', 'datetime', '_id'];
   door4InSource;
   door4InSourceEmpty = [];
 
@@ -71,6 +72,7 @@ export class MainComponent implements OnInit, AfterViewInit {
 
   INCAR = "เข้า";
   OUTCAR = "ออก";
+  getIdMainDialog;
 
   
 
@@ -168,6 +170,31 @@ export class MainComponent implements OnInit, AfterViewInit {
       console.log(this._door5Out)
     })
   }
+
+
+  getDoor4InByID(door4InID){
+    // this.dialog.open(MainDialogComponent);
+    // this.router.navigate(['/maindialog', door4InID])
+    localStorage.setItem('idMainDialog', door4InID)
+  }
+
+  openMainDialog(data) {  
+    debugger;  
+    const dialogConfig = new MatDialogConfig();  
+    dialogConfig.disableClose = true;  
+    dialogConfig.autoFocus = true;  
+    dialogConfig.position = {  
+        'top': '100px',  
+        'left': '500px'  
+    };  
+    dialogConfig.width = '500px';  
+    dialogConfig.height = '500px';
+    // this.getIdMainDialog = localStorage.getItem('idMainDialog')
+    dialogConfig.data = {  
+        mainId: data._id  
+    };  
+    this.dialog.open(MainDialogComponent, dialogConfig);  
+} 
 
   // getIcarin() {
   //   this.apiService.getIcarin().subscribe((_data : any) => {

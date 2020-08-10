@@ -143,21 +143,21 @@
 
               <div class="example-container" >
 
-                <table style="background-color: #e6e6e6; "   mat-table matSort matSortActive="element.id" [dataSource]="door4InSource">
+                <table style="background-color: #e6e6e6; "  mat-table matSort matSortActive="element.id" [dataSource]="door4InSource">
                   
                   <ng-container matColumnDef="img_car">
                     <th style="background-color: #8a8a8a;" mat-header-cell *matHeaderCellDef>ภาพรถยนต์</th>
-                    <td mat-cell *matCellDef="let element"><img style="width: 100px; height: 70px;" [src]="element.img_car" /></td>
+                    <td mat-cell *matCellDef="let element"  (click)="openDialog()" ><img style="width: 100px; height: 70px;" [src]="element.img_car" /></td>
                   </ng-container>
           
                   <ng-container  matColumnDef="img_licenplate">
                     <th  style="background-color: #8a8a8a;" mat-header-cell *matHeaderCellDef >ป้ายทะเบียน</th>
-                    <td mat-cell *matCellDef="let element"><img style="width: 80px; height: 50px;" [src]="element.img_licenplate" /></td>
+                    <td mat-cell *matCellDef="let element" (click)="getDoor4InByID(element._id)"><img style="width: 80px; height: 50px;" [src]="element.img_licenplate" /></td>
                   </ng-container>
           
                   <ng-container  matColumnDef="number_car">
                     <th style="background-color: #8a8a8a;" mat-header-cell *matHeaderCellDef >เลขทะเบียน</th>
-                    <td mat-cell *matCellDef="let element">{{ element.number_car }}</td>
+                    <td mat-cell *matCellDef="let element" (click)="openMainDialog(element._id)">{{ element.number_car }}</td>
                   </ng-container>
           
                   <ng-container  matColumnDef="province">
@@ -179,6 +179,11 @@
                     <th style="background-color: #8a8a8a;" mat-header-cell *matHeaderCellDef>เวลา</th>
                     <!-- <td mat-cell *matCellDef="let element">{{ element.datetime }}</td> -->
                     <td mat-cell *matCellDef="let element">{{element.datetime | date:"yyyy-MM-dd | HH:mm น."}}</td>
+                  </ng-container>
+
+                  <ng-container  matColumnDef="_id">
+                    <th style="background-color: #8a8a8a;" mat-header-cell *matHeaderCellDef >id</th>
+                    <td  mat-cell *matCellDef="let element">{{ element._id }}</td>
                   </ng-container>
           
                   <tr mat-header-row *matHeaderRowDef="door4InColumns sticky: true"></tr>

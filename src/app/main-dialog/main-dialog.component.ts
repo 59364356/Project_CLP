@@ -20,6 +20,10 @@ export class MainDialogComponent implements OnInit {
   _door5Out : door5_out[];
 
   ngOnInit(): void {
+    this.getDoor4_IN()
+    this.getDoor4_OUT()
+    this.getDoor5_IN()
+    this.getDoor5_OUT()
   }
 
   getDoor4_IN() {

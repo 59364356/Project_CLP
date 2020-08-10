@@ -56,7 +56,15 @@
 
                           <ng-container  matColumnDef="gateway">
                             <th mat-header-cell *matHeaderCellDef>Gateway</th>
-                            <td mat-cell *matCellDef="let element">{{ element.gateway }}</td>
+                            <td mat-cell *matCellDef="let element">
+                                <div *ngIf="element.gateway == INCAR" style="color: #06aa00;">
+                                    {{ element.gateway }}
+                                </div>
+                                <div *ngIf="element.gateway == OUTCAR" style="color: #f03f3f;">
+                                    {{ element.gateway }}
+                                </div>
+                                <!-- {{ element.gateway }} -->
+                            </td>
                           </ng-container>
                           <!-- <ng-container  matColumnDef="gateway">
                             <th mat-header-cell *matHeaderCellDef>Gateway</th>

@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { postLogin, respLogin } from '../interface/postLogin';
 import { LoginComponent } from '../login/login.component';
 import { Router, NavigationStart  } from '@angular/router';
-
+import { tap, map } from 'rxjs/operators';
 
 interface myData{
   success: boolean,
@@ -15,11 +15,11 @@ interface myData{
 })
 export class AuthService {
 
+ constructor(private router: Router,private http: HttpClient) { }
+
   cLogin : boolean ;
 
-  private loggedInStatus = false
-
-  constructor(private router: Router,private http: HttpClient) { }
+  public loggedInStatus = false
 
   setLoggedIn(value: boolean) {
     this.loggedInStatus = value
@@ -28,12 +28,19 @@ export class AuthService {
     return this.loggedInStatus
   }
 
-  getAdmin(username, password){
-    return this.http.post<myData>('',{
+
+  // login new: string: string
+  getAdminDetails(username, password){
+    return this.http.post<myData>('https://cam-see-car.herokuapp.com/api/admin/login',{
       username,
       password
-    })
+    });
   }
+
+
+
+
+
 
   postLoginStatus(username, password){
     this.http.post('https://cam-see-car.herokuapp.com/api/admin/login', {
@@ -58,6 +65,25 @@ export class AuthService {
       console.log(err);
       window.alert('login false')
     });
+  }
+
+
+  login(username: string, password: string) {
+    return this.http.post<any>('https://cam-see-car.herokuapp.com/api/admin/login', { username: username, password: password })
+        .pipe(map(user => {
+            // login successful if there's a jwt token in the response
+            if (user && user.token) {
+                // store user details and jwt token in local storage to keep user logged in between page refreshes
+                localStorage.setItem('currentUser', JSON.stringify(user));
+            }
+
+            return user;
+        }));
+  }
+
+  logout() {
+      // remove user from local storage to log user out
+      localStorage.removeItem('currentUser');
   }
 
 

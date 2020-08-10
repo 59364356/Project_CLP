@@ -67,60 +67,64 @@ export class ApiService {
     );
   }
 
-  getDoor4_IN(){
-    return this._httpClient.get<door4_in>(this.api_LCT + 'history_car?door=ประตู4&gateway=เข้า')
+  // get door 4 IN
+  getDoor4_IN(): Observable<door4_in[]> {
+    return this._httpClient.get<door4_in[]>(this.api_LCT + 'history_car?door=ประตู4&gateway=เข้า')
     .pipe(
       retry(3),
       catchError(this.handleError)
     );
   }
-  getDoor4_IN_ByID(id:string){
-    return this._httpClient.get<door4_in>(this.api_LCT + 'history_car?door=ประตู4&gateway=เข้า' + id)
+  getDoor4_IN_ByID(id:string): Observable<door4_in[]>{
+    return this._httpClient.get<door4_in[]>(this.api_LCT + 'history_car?door=ประตู4&gateway=เข้า' +'/'+  id)
     .pipe(
       retry(3),
       catchError(this.handleError)
     );
   }
   
-  getDoor4_OUT() {
-    return this._httpClient.get<door4_out>(this.api_LCT + 'history_car?door=ประตู4&gateway=ออก')
+  // get door 4 OUT
+  getDoor4_OUT(): Observable<door4_out[]> {
+    return this._httpClient.get<door4_out[]>(this.api_LCT + 'history_car?door=ประตู4&gateway=ออก')
     .pipe(
       retry(3),
       catchError(this.handleError)
     );
   }
-  getDoor4_OUT_ByID(id:string){
-    return this._httpClient.get<door4_out>(this.api_LCT + 'history_car?door=ประตู4&gateway=ออก' + id)
-    .pipe(
-      retry(3),
-      catchError(this.handleError)
-    );
-  }
-
-  getDoor5_IN() {
-    return this._httpClient.get<door5_in>(this.api_LCT + 'history_car?door=ประตู5&gateway=เข้า')
-    .pipe(
-      retry(3),
-      catchError(this.handleError)
-    );
-  }
-  getDoor5_IN_ByID(id:string){
-    return this._httpClient.get<door5_in>(this.api_LCT + 'history_car?door=ประตู5&gateway=เข้า' + id)
+  getDoor4_OUT_ByID(id:string): Observable<door4_out[]>{
+    return this._httpClient.get<door4_out[]>(this.api_LCT + 'history_car?door=ประตู4&gateway=ออก' +'/'+  id)
     .pipe(
       retry(3),
       catchError(this.handleError)
     );
   }
 
-  getDoor5_OUT() {
-    return this._httpClient.get<door5_out>(this.api_LCT + 'history_car?door=ประตู5&gateway=ออก')
+  // get door 5 IN
+  getDoor5_IN(): Observable<door5_in[]> {
+    return this._httpClient.get<door5_in[]>(this.api_LCT + 'history_car?door=ประตู5&gateway=เข้า')
     .pipe(
       retry(3),
       catchError(this.handleError)
     );
   }
-  getDoor5_OUT_ByID(id:string){
-    return this._httpClient.get<door5_out>(this.api_LCT + 'history_car?door=ประตู5&gateway=ออก' + id)
+  getDoor5_IN_ByID(id:string): Observable<door5_in[]>{
+    return this._httpClient.get<door5_in[]>(this.api_LCT + 'history_car?door=ประตู5&gateway=เข้า' +'/'+  id)
+    .pipe(
+      retry(3),
+      catchError(this.handleError)
+    );
+  }
+
+  // get door 4 OUT
+  getDoor5_OUT(): Observable<door5_out[]> {
+    return this._httpClient.get<door5_out[]>(this.api_LCT + 'history_car?door=ประตู5&gateway=ออก')
+    .pipe(
+      retry(3),
+      catchError(this.handleError)
+    );
+  }
+  getDoor5_OUT_ByID(id:string): Observable<door5_out[]>{
+    return this._httpClient.get<door5_out[]>(this.api_LCT + 'history_car?door=ประตู5&gateway=ออก' +'/'+ id)
     .pipe(
       retry(3),
       catchError(this.handleError)
