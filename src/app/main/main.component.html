@@ -113,21 +113,12 @@
           <!-- Grid 3 -->
           <mat-grid-tile colspan="2" rowspan="3">
             <div  style=" background-color: #e6e6e6; width: 98%; height: 95%; ">
-              <button mat-raised-button (click)="openDialog()" color="accent">Accent</button>
+              
             </div>
           </mat-grid-tile>
           <!-- Grid 4 -->
           <mat-grid-tile colspan="2" rowspan="3">
             <div  style=" background-color: #ffdf89; width: 98%; height: 95%; ">
-              <!-- <div *ngFor="let ts of _numCar">
-                <h2>{{ts.number_car}}</h2>
-              </div> -->
-
-              <!-- <div *ngFor='let test of _door4In'>
-                <mat-card>
-                     <h2>{{test.color}}</h2>
-                </mat-card>
-             </div> -->
 
             </div>
           </mat-grid-tile>
@@ -147,12 +138,12 @@
                   
                   <ng-container matColumnDef="img_car">
                     <th style="background-color: #8a8a8a;" mat-header-cell *matHeaderCellDef>ภาพรถยนต์</th>
-                    <td mat-cell *matCellDef="let element"  (click)="openDialog()" ><img style="width: 100px; height: 70px;" [src]="element.img_car" /></td>
+                    <td mat-cell *matCellDef="let element"  (click)="openDialog()" ><img style="width: 90px; height: 60px;" [src]="element.img_car" /></td>
                   </ng-container>
           
                   <ng-container  matColumnDef="img_licenplate">
                     <th  style="background-color: #8a8a8a;" mat-header-cell *matHeaderCellDef >ป้ายทะเบียน</th>
-                    <td mat-cell *matCellDef="let element" (click)="getDoor4InByID(element._id)"><img style="width: 80px; height: 50px;" [src]="element.img_licenplate" /></td>
+                    <td mat-cell *matCellDef="let element" (click)="getDoor4InByID(element._id)"><img style="width: 75px; height: 45px;" [src]="element.img_licenplate" /></td>
                   </ng-container>
           
                   <ng-container  matColumnDef="number_car">
@@ -180,11 +171,6 @@
                     <!-- <td mat-cell *matCellDef="let element">{{ element.datetime }}</td> -->
                     <td mat-cell *matCellDef="let element">{{element.datetime | date:"yyyy-MM-dd | HH:mm น."}}</td>
                   </ng-container>
-
-                  <ng-container  matColumnDef="_id">
-                    <th style="background-color: #8a8a8a;" mat-header-cell *matHeaderCellDef >id</th>
-                    <td  mat-cell *matCellDef="let element">{{ element._id }}</td>
-                  </ng-container>
           
                   <tr mat-header-row *matHeaderRowDef="door4InColumns sticky: true"></tr>
                   <tr mat-row *matRowDef="let row; columns: door4InColumns"></tr>
@@ -196,7 +182,7 @@
                   
                 </table>
               </div>
-              <mat-paginator #TableD4InPaginator="matPaginator"  [pageSizeOptions]="[2, 3, 5, 10, 20]" style="width: 100%;color:#ffffff; background-color: #8a8a8a;" mat-footer-row   showFirstLastButtons></mat-paginator>
+              <mat-paginator #TableD4InPaginator="matPaginator"  [pageSizeOptions]="[10, 15, 20]" style="width: 100%;color:#ffffff; background-color: #8a8a8a;" mat-footer-row   showFirstLastButtons></mat-paginator>
             </div>
           </mat-grid-tile>
 
@@ -256,7 +242,7 @@
                   
                 </table>
               </div>
-            <mat-paginator #TableD4OutPaginator="matPaginator" mat-footer-row  style="width: 100%;color:#ffffff; background-color: #f07b3f;" [pageSizeOptions]="[1,2,5, 10, 20]"   showFirstLastButtons></mat-paginator>
+            <mat-paginator #TableD4OutPaginator="matPaginator" mat-footer-row  style="width: 100%;color:#ffffff; background-color: #f07b3f;" [pageSizeOptions]="[10, 15, 20]"   showFirstLastButtons></mat-paginator>
             </div>
           </mat-grid-tile>
 
@@ -364,7 +350,7 @@
                 
               </table>
             </div>
-            <mat-paginator #TableD5InPaginator="matPaginator" [pageSizeOptions]="[1,3, 5, 10, 20]"   style="width: 100%;color:#ffffff; background-color: #8a8a8a;" mat-footer-row  showFirstLastButtons></mat-paginator>
+            <mat-paginator #TableD5InPaginator="matPaginator" [pageSizeOptions]="[10, 15, 20]"   style="width: 100%;color:#ffffff; background-color: #8a8a8a;" mat-footer-row  showFirstLastButtons></mat-paginator>
           </div>
         </mat-grid-tile>
 
@@ -421,7 +407,7 @@
                 
               </table>
             </div>
-          <mat-paginator #TableD5OutPaginator="matPaginator" mat-footer-row  style="width: 100%;color:#ffffff; background-color: #f07b3f;" [pageSizeOptions]="[1, 2, 5, 10, 20]"   showFirstLastButtons></mat-paginator>
+          <mat-paginator #TableD5OutPaginator="matPaginator" mat-footer-row  style="width: 100%;color:#ffffff; background-color: #f07b3f;" [pageSizeOptions]="[10, 15, 20]"   showFirstLastButtons></mat-paginator>
           </div>
         </mat-grid-tile>
 

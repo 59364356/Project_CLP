@@ -1,10 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ApiService } from '../service/api.service';
+import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import { IcarOut } from '../interface/carOut';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { history_car } from '../interface/history_car';
+import { HistoryDialogComponent } from '../history-dialog/history-dialog.component';
 
 @Component({
   selector: 'app-history',
@@ -20,7 +22,7 @@ export class HistoryComponent implements OnInit {
 
   _hisCar : history_car[];
   _hisCar2 : history_car[];
-  hisCarColumns : string[] = ['img_car', 'img_licenplate', 'number_car', 'province', 'type_car', 'color', 'door', 'gateway', 'datetime', 'user_name'];
+  hisCarColumns : string[] = ['img_car', 'img_licenplate', 'number_car', 'gateway', 'door', 'province', 'type_car', 'color', 'datetime', 'user_name'];
   hisCarSource;
   hisCarSourceEmpty = [];
 
@@ -38,12 +40,24 @@ export class HistoryComponent implements OnInit {
     this.hisCarSource.filter = filterValue.trim().toLowerCase();
   }  
 
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: ApiService, public dialog: MatDialog) { }
 
 
   ngOnInit() {
     // this.getIcarout();
     this.getHisCar();
+  }
+
+  getHisDialog(){
+
+  }
+
+  getLocalHis(idHisID){
+    localStorage.setItem('idHisDialog', idHisID)
+  }
+
+  openDialog() {
+    this.dialog.open(HistoryDialogComponent);
   }
 
   

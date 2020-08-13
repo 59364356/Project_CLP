@@ -52,6 +52,25 @@ th{
     text-align: center !important;
     align-items: center;
     // // justify-content:center;
+
+
+}
+td{
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 3% !important;
+    width: 1% !important;
+    text-align: center !important;
+    align-items: center;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  
+    word-break: break-word;
+  
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
 }
 tr{
     // font-size:13px;
@@ -78,4 +97,10 @@ tr{
 ::ng-deep .mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label {
     transform: translateY(-1.1em) scale(.75);
     width: 133.33333%;
+}
+
+.md-dialog-container {
+    background-color: #000000;
+    width: 250px;
+    height: 250px
 }

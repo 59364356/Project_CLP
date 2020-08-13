@@ -4,8 +4,10 @@ import { HttpClient, HttpHeaders, HttpErrorResponse, HttpClientModule } from '@a
 import { ApiService } from '../service/api.service';
 import { AuthService } from '../service/auth.service';
 import { postLogin, respLogin } from '../interface/postLogin';
+import { loginAdmin } from '../interface/login_admin';
 import { AuthGuard } from '../auth.guard';
 import { Observable, throwError, of } from 'rxjs';
+import { MatSnackBar,MatSnackBarHorizontalPosition,MatSnackBarVerticalPosition, } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login',
@@ -21,6 +23,8 @@ export class LoginComponent implements OnInit {
   resultLogin: respLogin;
   checkStatus;
 
+  logAdmin: loginAdmin[];
+
 
   // title = 'app';
   showHead: boolean = false;
@@ -32,7 +36,8 @@ export class LoginComponent implements OnInit {
   localLogin;
 
 
-  constructor(private router: Router, private apiService: ApiService, private authService: AuthService, private _httpClient: HttpClient) {
+  constructor(private router: Router, private apiService: ApiService, private authService: AuthService, 
+              private _httpClient: HttpClient, private _snackBar: MatSnackBar) {
     // on route change to '/login', set the variable showHead to false
       router.events.forEach((event) => {
         if (event instanceof NavigationStart) {
@@ -45,6 +50,63 @@ export class LoginComponent implements OnInit {
         }
       });
     }
+
+    ngOnInit(){
+      this.checkLocalLogin()
+    }
+
+    checkLocalLogin(){
+      if(localStorage.getItem('LoginAdmin')){
+        this.router.navigate(['/main'])
+      }
+      this.router.navigate(['/login'])
+
+    }
+
+    // adminz12345  passwordz987654321
+    postLoginStatus(){
+      var username = (<HTMLInputElement>document.getElementById('username')).value;
+      var password = (<HTMLInputElement>document.getElementById('password')).value;
+      // console.log(username, password);
+      this._httpClient.post('https://cam-see-car.herokuapp.com/api/admin/login', {
+        'username': username,
+        'password':password
+      }).subscribe(res =>{
+        console.log('res: ',res);
+        this.logAdmin = res['data'];
+        this.openSnackBar()
+
+        this.router.navigate(["/main"]);
+        localStorage.setItem('LoginAdmin',(res['data'][0]['_id']))
+        // localStorage.setItem('LoginAdmin', this.logAdmin)
+        // this.localLogin = localStorage.setItem('LoginAdmin',password)
+        // console.log('LOCAL ',this.localLogin)
+        console.log(username, password)
+        console.log('LOGIN SUCCESS')
+        // window.location.reload();
+        // window.alert('Login success')
+        // console.log('res status', res.status)
+        // if (res.status == 200){
+        //   this.router.navigate(["/main"]);
+        // }
+      }, err =>{
+        console.log(err);
+        console.log('LOGIN FALSE')
+        window.alert('login false')
+      });
+    }
+
+
+    horizontalPosition: MatSnackBarHorizontalPosition = 'center';
+    verticalPosition: MatSnackBarVerticalPosition = 'bottom';
+    openSnackBar() {
+      this._snackBar.open('Login Success', 'End now', {
+      duration: 1200,
+      horizontalPosition: this.horizontalPosition,
+      verticalPosition: this.verticalPosition,
+    });
+  }
+    
 
 
     // login new  adminz12345  passwordz987654321
@@ -106,38 +168,6 @@ export class LoginComponent implements OnInit {
     }
 
 
-    // adminz12345  passwordz987654321
-    postLoginStatus(){
-      var username = (<HTMLInputElement>document.getElementById('username')).value;
-      var password = (<HTMLInputElement>document.getElementById('password')).value;
-      // console.log(username, password);
-      this._httpClient.post('https://cam-see-car.herokuapp.com/api/admin/login', {
-        'username': username,
-        'password':password
-      }).subscribe(res =>{
-        console.log('res: ',res);
-        this.authService.cLogin = true;
-
-        this.router.navigate(["/main"]);
-        localStorage.setItem('LoginAdmin',JSON.stringify(res))
-        // this.localLogin = localStorage.setItem('LoginAdmin',password)
-        // console.log('LOCAL ',this.localLogin)
-        console.log(username, password)
-        console.log('LOGIN SUCCESS')
-        // window.location.reload();
-        // window.alert('Login success')
-        // console.log('res status', res.status)
-        // if (res.status == 200){
-        //   this.router.navigate(["/main"]);
-        // }
-      }, err =>{
-        this.authService.cLogin = false;
-        console.log(err);
-        console.log('LOGIN FALSE')
-        window.alert('login false')
-      });
-    }
-
 
 
 
@@ -171,9 +201,6 @@ export class LoginComponent implements OnInit {
 
   }
 
-  ngOnInit(): void {
-    
-  }
 
  
   stch() {

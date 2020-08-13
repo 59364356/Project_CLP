@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router, NavigationStart  } from '@angular/router';
+import { MatSnackBar,MatSnackBarHorizontalPosition,MatSnackBarVerticalPosition, } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +13,7 @@ export class AppComponent {
   showHead: boolean = false;
 
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private _snackBar: MatSnackBar) {
     // on route change to '/login', set the variable showHead to false
       router.events.forEach((event) => {
         if (event instanceof NavigationStart) {
@@ -27,8 +28,23 @@ export class AppComponent {
       });
     }
 
+    
+    horizontalPosition: MatSnackBarHorizontalPosition = 'center';
+    verticalPosition: MatSnackBarVerticalPosition = 'bottom';
+    openSnackBar() {
+      this._snackBar.open('Logout Success', 'End now', {
+      duration: 1000,
+      horizontalPosition: this.horizontalPosition,
+      verticalPosition: this.verticalPosition,
+    });
+  }
+
     logoutLocal(){
+      // this.openSnackBar()
       localStorage.removeItem('LoginAdmin')
+      
     }
+
+
 }
 

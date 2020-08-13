@@ -59,8 +59,16 @@ export class ApiService {
 
   constructor(private _httpClient: HttpClient) { }
 
+  // get history
   getHisCar(): Observable<history_car[]> {
     return this._httpClient.get<history_car[]>(this.api_LCT + 'history_car/all')
+    .pipe(
+      retry(3),
+      catchError(this.handleError)
+    );
+  }
+  getHisCarByID(id:string): Observable<history_car[]>{
+    return this._httpClient.get<history_car[]>(this.api_LCT + 'history_car/all' + '/' + id)
     .pipe(
       retry(3),
       catchError(this.handleError)
