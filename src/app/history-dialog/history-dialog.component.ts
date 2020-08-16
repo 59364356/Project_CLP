@@ -24,6 +24,8 @@ export class HistoryDialogComponent implements OnInit {
 
   logAdmin : loginAdmin[];
   contAdmin : UserContAdmin[];
+  showSpinner = true;
+  buttonClose = false;
 
   ngOnInit(){
     console.log('ID HIS ', this.getHisID)
@@ -36,8 +38,6 @@ export class HistoryDialogComponent implements OnInit {
   }
 
   postUserConAdmin(){
-    // var username = (<HTMLInputElement>document.getElementById('username')).value;
-    // var password = (<HTMLInputElement>document.getElementById('password')).value;
     var HisID = localStorage.getItem('idHisDialog')
     var AdminID = localStorage.getItem('LoginAdmin')
 
@@ -45,10 +45,13 @@ export class HistoryDialogComponent implements OnInit {
     'admin_id': AdminID,  
     'user_id': HisID
     }).subscribe(res =>{
-      console.log('RES ', res)
       this.contAdmin = res['data'];
+      if(this.contAdmin){
+        this.showSpinner = false;
+        this.buttonClose = true;
+      }
+      console.log('RES ', res)
       console.log('CON ', this.contAdmin)
-      // localStorage.setItem('LoginAdmin',JSON.stringify(res))
     }, err =>{
       console.log(err);
 

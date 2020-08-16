@@ -14,9 +14,10 @@
         <button mat-button routerLink="main" >Main</button>
         <button mat-button routerLink="history"  >History</button>
 
-        <!-- <mat-icon class="example-icon" aria-hidden="false" aria-label="Example heart icon">favorite</mat-icon> -->
-        <mat-icon class="example-icon" (click)="logoutLocal()" routerLink="login" aria-hidden="false" aria-label="Example delete icon">no_meeting_room</mat-icon>
-    </mat-toolbar-row>
+        <!-- <mat-icon class="example-icon" aria-hidden="false" aria-label="Example heart icon">favorite</mat-icon>  no_meeting_room               -->
+        <!-- <mat-icon class="example-icon" (click)="logoutLocal()" routerLink="login" aria-hidden="false" aria-label="Example delete icon">login</mat-icon> -->
+        <button (click)="logoutLocal()" routerLink="login" style="color:#ff7300; text-align: center; font-size: 60%; width: 5%; height: 50%;" mat-button >Logout</button>
+      </mat-toolbar-row>
     
 </mat-toolbar>
 

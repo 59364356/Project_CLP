@@ -29,6 +29,7 @@ export class HistoryComponent implements OnInit {
   INCAR = "เข้า";
   OUTCAR = "ออก";
   cuser = [];
+  showSpinner = true;
 
   
 
@@ -46,11 +47,9 @@ export class HistoryComponent implements OnInit {
   ngOnInit() {
     // this.getIcarout();
     this.getHisCar();
+    this.getIcarout();
   }
 
-  getHisDialog(){
-
-  }
 
   getLocalHis(idHisID){
     localStorage.setItem('idHisDialog', idHisID)
@@ -81,11 +80,14 @@ export class HistoryComponent implements OnInit {
       // this.hisCarSource.sort = this.sort;
       this.hisCarSource.paginator = this.paginator;
       console.log(this._hisCar);
+      if(this._hisCar){
+        this.showSpinner = false;
+      }
 
     }, err =>{
       console.log(err);
     })
-    
+    // this.showSpinner = false;
   }
 
   // getIcarin() {

@@ -3,7 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { MainComponent } from '../app/main/main.component';
 import { LoginComponent } from '../app/login/login.component';
 import { HistoryComponent } from '../app/history/history.component';
-import { MainDialogComponent } from '../app/main-dialog/main-dialog.component';
 import { AuthGuard } from './auth.guard';
 import { AuthService } from './service/auth.service';
 

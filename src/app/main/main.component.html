@@ -119,7 +119,7 @@
           <!-- Grid 4 -->
           <mat-grid-tile colspan="2" rowspan="3">
             <div  style=" background-color: #ffdf89; width: 98%; height: 95%; ">
-
+              <!-- <mat-progress-spinner [diameter]="50" mode="indeterminate" color="warn" ></mat-progress-spinner> -->
             </div>
           </mat-grid-tile>
 
@@ -173,14 +173,13 @@
                   </ng-container>
           
                   <tr mat-header-row *matHeaderRowDef="door4InColumns sticky: true"></tr>
-                  <tr mat-row *matRowDef="let row; columns: door4InColumns"></tr>
-                  
-                  <!-- No Data V.10
-                  <tr class="mat-row" *matNoDataRow>
-                    <td class="mat-cell" colspan="4">No data matching the filter</td>
-                  </tr> -->
-                  
+                  <tr mat-row *matRowDef="let row; columns: door4InColumns"></tr>              
+               
                 </table>
+
+                <div *ngIf="showSpinner" style=" width: 100%; height: 100%; display:flex; align-items: center; justify-content: center;">
+                  <mat-progress-spinner [diameter]="50" mode="indeterminate" color="primary" style="size: 500px; " ></mat-progress-spinner>
+              </div>
               </div>
               <mat-paginator #TableD4InPaginator="matPaginator"  [pageSizeOptions]="[10, 15, 20]" style="width: 100%;color:#ffffff; background-color: #8a8a8a;" mat-footer-row   showFirstLastButtons></mat-paginator>
             </div>
@@ -241,6 +240,9 @@
                   <tr mat-row *matRowDef="let row; columns: door4OutColumns"></tr>
                   
                 </table>
+                <div *ngIf="showSpinner" style=" width: 100%; height: 100%; display:flex; align-items: center; justify-content: center;">
+                  <mat-progress-spinner [diameter]="50" mode="indeterminate" color="warn" style="size: 500px; " ></mat-progress-spinner>
+              </div>
               </div>
             <mat-paginator #TableD4OutPaginator="matPaginator" mat-footer-row  style="width: 100%;color:#ffffff; background-color: #f07b3f;" [pageSizeOptions]="[10, 15, 20]"   showFirstLastButtons></mat-paginator>
             </div>
@@ -343,12 +345,12 @@
                 <tr mat-header-row *matHeaderRowDef="door5InColumns sticky: true"></tr>
                 <tr mat-row *matRowDef="let row; columns: door5InColumns"></tr>
                 
-                <!-- No Data V.10
-                <tr class="mat-row" *matNoDataRow>
-                  <td class="mat-cell" colspan="4">No data matching the filter</td>
-                </tr> -->
-                
               </table>
+
+              <div *ngIf="showSpinner" style=" width: 100%; height: 100%; display:flex; align-items: center; justify-content: center;">
+                <mat-progress-spinner [diameter]="50" mode="indeterminate" color="primary" style="size: 500px; " ></mat-progress-spinner>
+            </div>
+
             </div>
             <mat-paginator #TableD5InPaginator="matPaginator" [pageSizeOptions]="[10, 15, 20]"   style="width: 100%;color:#ffffff; background-color: #8a8a8a;" mat-footer-row  showFirstLastButtons></mat-paginator>
           </div>
@@ -406,6 +408,11 @@
                 <tr mat-row *matRowDef="let row; columns: door5OutColumns"></tr>
                 
               </table>
+
+              <div *ngIf="showSpinner" style=" width: 100%; height: 100%; display:flex; align-items: center; justify-content: center;">
+                <mat-progress-spinner [diameter]="50" mode="indeterminate" color="warn" style="size: 500px; " ></mat-progress-spinner>
+            </div>
+
             </div>
           <mat-paginator #TableD5OutPaginator="matPaginator" mat-footer-row  style="width: 100%;color:#ffffff; background-color: #f07b3f;" [pageSizeOptions]="[10, 15, 20]"   showFirstLastButtons></mat-paginator>
           </div>

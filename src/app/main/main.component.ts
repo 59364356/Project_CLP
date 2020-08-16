@@ -73,6 +73,7 @@ export class MainComponent implements OnInit, AfterViewInit {
   INCAR = "เข้า";
   OUTCAR = "ออก";
   getIdMainDialog;
+  showSpinner = true;
 
   
 
@@ -111,6 +112,8 @@ export class MainComponent implements OnInit, AfterViewInit {
     this.dialog.open(MainDialogComponent);
   }
 
+  
+
 
   ngOnInit() {
     
@@ -138,7 +141,9 @@ export class MainComponent implements OnInit, AfterViewInit {
     this.apiService.getDoor4_IN().subscribe((_car4IN : any) => {
       this._door4In = _car4IN['data'];
       this.door4InSource = new MatTableDataSource(this._door4In);
-      // this.door4InSource.sort = this.sort;
+      if(this._door4In){
+        this.showSpinner = false;
+      }
       this.door4InSource.paginator = this.tableD4InPaginator;
       console.log(this._door4In)
     })
@@ -147,7 +152,9 @@ export class MainComponent implements OnInit, AfterViewInit {
     this.apiService.getDoor4_OUT().subscribe((_car4OUT: any) => {
       this._door4Out = _car4OUT['data'];
       this.door4OutSource = new MatTableDataSource(this._door4Out);
-      // this.door4OutSource.sort = this.sort2.toArray()[3];
+      if(this._door4Out){
+        this.showSpinner = false;
+      }      
       this.door4OutSource.paginator = this.tableD4OutPaginator;
       console.log(this._door4Out)
     })
@@ -156,7 +163,9 @@ export class MainComponent implements OnInit, AfterViewInit {
     this.apiService.getDoor5_IN().subscribe((_car5IN : any) => {
       this._door5In = _car5IN['data'];
       this.door5InSource = new MatTableDataSource(this._door5In);
-      // this.door5InSource.sort = this.sort;
+      if(this._door5In){
+        this.showSpinner = false;
+      }
       this.door5InSource.paginator = this.tableD5InPaginator;
       console.log(this._door5In)
     })
@@ -165,7 +174,9 @@ export class MainComponent implements OnInit, AfterViewInit {
     this.apiService.getDoor5_OUT().subscribe((_car5OUT: any) => {
       this._door5Out = _car5OUT['data'];
       this.door5OutSource = new MatTableDataSource(this._door5Out);
-      // this.door5OutSource.sort = this.sort;
+      if(this._door5Out){
+        this.showSpinner = false;
+      }
       this.door5OutSource.paginator = this.tableD5OutPaginator;
       console.log(this._door5Out)
     })
