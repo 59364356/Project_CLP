@@ -7,6 +7,10 @@ import {MatTableDataSource} from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { history_car } from '../interface/history_car';
 import { HistoryDialogComponent } from '../history-dialog/history-dialog.component';
+import { HttpClient, HttpHeaders, HttpErrorResponse, HttpClientModule } from '@angular/common/http';
+import io from 'socket.io-client';
+import { delay } from 'rxjs/operators';
+// import { Socket } from 'dgram';
 
 @Component({
   selector: 'app-history',
@@ -15,10 +19,10 @@ import { HistoryDialogComponent } from '../history-dialog/history-dialog.compone
 })
 export class HistoryComponent implements OnInit {
 
-  _IcarOut: IcarOut[];
-  displayedColumns: string[] = ['id','name', 'username', 'email', 'phone', 'street', 'city'];
-  dataSource;
-  dataSourceEmpty = []
+  // _IcarOut: IcarOut[];
+  // displayedColumns: string[] = ['id','name', 'username', 'email', 'phone', 'street', 'city'];
+  // dataSource;
+  // dataSourceEmpty = []
 
   _hisCar : history_car[];
   _hisCar2 : history_car[];
@@ -29,7 +33,9 @@ export class HistoryComponent implements OnInit {
   INCAR = "เข้า";
   OUTCAR = "ออก";
   cuser = [];
-  showSpinner = true;
+  showSpinner = false;
+
+  socket = io('https://cam-see-car.herokuapp.com');
 
   
 
@@ -41,14 +47,24 @@ export class HistoryComponent implements OnInit {
     this.hisCarSource.filter = filterValue.trim().toLowerCase();
   }  
 
-  constructor(private apiService: ApiService, public dialog: MatDialog) { }
+  constructor(private apiService: ApiService, public dialog: MatDialog, private _httpClient: HttpClient) { }
 
 
   ngOnInit() {
-    // this.getIcarout();
+    this.showSpinner = true;
     this.getHisCar();
-    this.getIcarout();
+    this.getItems();
+    // this.socket.on('post', (res) =>{
+    //   this._hisCar.push(res)
+    //   // this.dataSource.next(this._hisCar)
+    //   console.log('SOCKET ',res)
+    //   console.log('HIS-CAR ',this._hisCar)
+
+    // })
   }
+
+
+
 
 
   getLocalHis(idHisID){
@@ -59,36 +75,68 @@ export class HistoryComponent implements OnInit {
     this.dialog.open(HistoryDialogComponent);
   }
 
-  
-  getIcarout() {
-    this.apiService.getIcarOut().subscribe((_data: any) => {
-      this._IcarOut = _data;
-      this.dataSource = new MatTableDataSource(this._IcarOut);
-      this.dataSource.sort = this.sort;
-      this.dataSource.paginator = this.paginator;
-      console.log(this._IcarOut);
 
-    }, err =>{
-      console.log(err);
-    })
+  getItems() {
+    this.apiService.getSocketData().subscribe(async (data: any) => {
+      if (data) {
+        this._hisCar.push(data);
+        this.hisCarSource = new MatTableDataSource();
+        this.hisCarSource.data = this._hisCar;
+        this.hisCarSource.paginator = this.paginator;
+        this.hisCarSource.sort = this.sort
+        console.log('GET SC',data)
+      }
+    },
+      error => {
+        this.showSpinner = true;
+      }
+    );
   }
-
+    
   getHisCar() {
     this.apiService.getHisCar().subscribe((_data: any) =>{
       this._hisCar = _data['data'];
       this.hisCarSource = new MatTableDataSource(this._hisCar);
-      // this.hisCarSource.sort = this.sort;
       this.hisCarSource.paginator = this.paginator;
       console.log(this._hisCar);
       if(this._hisCar){
         this.showSpinner = false;
       }
-
     }, err =>{
       console.log(err);
     })
-    // this.showSpinner = false;
   }
+
+  // getHisCar() {
+  //   this._httpClient.get('https://cam-see-car.herokuapp.com/api/history_car/all').subscribe((_data: any) =>{
+  //     this._hisCar = _data['data'];
+  //     this.hisCarSource = new MatTableDataSource(this._hisCar);
+  //     this.hisCarSource.paginator = this.paginator;
+  //     console.log(this._hisCar);
+  //     if(this._hisCar){
+  //       this.showSpinner = false;
+  //     }
+  //   }, err =>{
+  //     console.log(err);
+  //   })
+  // }
+
+
+
+
+  // getIcarout() {
+  //   this.apiService.getIcarOut().subscribe((_data: any) => {
+  //     this._IcarOut = _data;
+  //     this.dataSource = new MatTableDataSource(this._IcarOut);
+  //     this.dataSource.sort = this.sort;
+  //     this.dataSource.paginator = this.paginator;
+  //     console.log(this._IcarOut);
+
+  //   }, err =>{
+  //     console.log(err);
+  //   })
+  // }
+
 
   // getIcarin() {
   //   this.apiService.getIcarin().subscribe((_data : any) => {

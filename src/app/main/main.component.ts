@@ -3,7 +3,10 @@ import { Router, NavigationStart  } from '@angular/router';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
+import { MainDialogComponent } from '../main-dialog/main-dialog.component';
 import { MatSort } from '@angular/material/sort';
+import * as io from 'socket.io-client';
+
 import { Icarin } from '../interface/car-in';
 import { numberCar } from '../interface/numCar';
 import { ApiService } from '../service/api.service';
@@ -11,24 +14,10 @@ import { door4_in } from '../interface/door4_in';
 import { door4_out } from '../interface/door4_out';
 import { door5_in } from '../interface/door5_in';
 import { door5_out } from '../interface/door5_out';
-import { MainDialogComponent } from '../main-dialog/main-dialog.component';
-// import { Observable } from 'rxjs/Observable';
-import { Observable } from 'rxjs';
 
+import { Observable } from 'rxjs';
 import { ViewChildren, AfterViewInit, QueryList } from '@angular/core';
 
-// const Icarin = [
-
-//   {title: 'No',_data: 'id'}, 
-//   {title: 'No',_data: 'first_name'}, 
-//   {title: 'No',_data: 'last_name'}, 
-//   {title: 'No',_data: 'email'}, 
-//   {title: 'No',_data: 'avatar'},
-
-//   // {id : number, first_name: string, last_name: string, email: string, avatar: string},
-//   // { id: any; first_name: any; last_name: any; email: any; avatar: any; }
-//   // {No: id, First Name: first_name, Last Name: last_name, Email: email, Avatar: avatar}
-// ];
 
 @Component({
   selector: 'app-main',
@@ -39,6 +28,8 @@ export class MainComponent implements OnInit, AfterViewInit {
 
   constructor(private router: Router, private apiService:ApiService, public dialog: MatDialog) {
   }
+
+  private socket;
 
   // _Icarin: Icarin[];
   // displayedColumns: string[] = ['id','first_name', 'last_name', 'email', 'avatar'];

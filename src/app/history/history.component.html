@@ -1,6 +1,6 @@
 <!-- display: flex; justify-content: center; align-items:center;flex-wrap: wrap;-->
 <html>
-  <body style=" margin:0 auto; max-width: 80%; ">
+  <body style=" margin:0 auto; max-width: 80%; max-height: 90%; ">
 
     <mat-grid-list cols="4" rowHeight="3:1">
 
@@ -16,7 +16,7 @@
 
 
                 <div class="example-container">
-                    <table  mat-table  matSortActive="element.id" [dataSource]="hisCarSource">
+                    <table  mat-table  matSort matSortActive="datetime" [dataSource]="hisCarSource" matSortDirection="desc">
 
                         <ng-container matColumnDef="img_car">
                             <th  mat-header-cell *matHeaderCellDef>ภาพรถยนต์</th>

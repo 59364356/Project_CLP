@@ -30,6 +30,7 @@
     "ngx-loading": "^8.0.0",
     "ngx-spinner": "^10.0.1",
     "rxjs": "~6.5.4",
+    "socket.io-client": "^2.3.0",
     "tslib": "^1.10.0",
     "typescript": "~3.8.3",
     "zone.js": "~0.10.2"
