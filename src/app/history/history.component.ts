@@ -53,7 +53,7 @@ export class HistoryComponent implements OnInit {
   ngOnInit() {
     this.showSpinner = true;
     this.getHisCar();
-    this.getItems();
+    this.getHisRealtime();
     // this.socket.on('post', (res) =>{
     //   this._hisCar.push(res)
     //   // this.dataSource.next(this._hisCar)
@@ -76,8 +76,8 @@ export class HistoryComponent implements OnInit {
   }
 
 
-  getItems() {
-    this.apiService.getSocketData().subscribe(async (data: any) => {
+  getHisRealtime() {
+    this.apiService.getSocketData().subscribe((data: any) => {
       if (data) {
         this._hisCar.push(data);
         this.hisCarSource = new MatTableDataSource();

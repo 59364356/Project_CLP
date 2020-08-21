@@ -63,6 +63,7 @@ export class MainComponent implements OnInit, AfterViewInit {
 
   INCAR = "เข้า";
   OUTCAR = "ออก";
+  Door4 = ''
   getIdMainDialog;
   showSpinner = true;
 
@@ -99,32 +100,75 @@ export class MainComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() { }
 
 
-  openDialog() {
-    this.dialog.open(MainDialogComponent);
-  }
+  // openDialog() {
+  //   this.dialog.open(MainDialogComponent);
+  // }
 
   
 
 
   ngOnInit() {
     
-    // this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
-    // this.getIcarin()
-    // this.getnumCar()
-
+    // table
     this.getDoor4_IN()
     this.getDoor4_OUT()
     this.getDoor5_IN()
     this.getDoor5_OUT()
+    
+    // Socket IO
+    this.getMainRealtime()
+    
+  }
 
-    // this.getTest()
-    // console.log(Math.max(1,2,6,8,4,10,0,2));
-    // console.log(Math.min(1,2,6,8,4,10,0,2));
-    // return this.apiService.getIcarin()
-    //   .subscribe(data => {
-    //     console.log(data.data)
-    //     this._Icarin = data
-    //   })
+  // Socket IO
+  getMainRealtime() {
+    this.apiService.getSocketData().subscribe((dataMain: any) => {
+      // Door 4 IN
+      if (dataMain.door == 'ประตู4' && dataMain.gateway == 'เข้า') {
+        this._door4In.push(dataMain);
+        this.door4InSource = new MatTableDataSource();
+        this.door4InSource.data = this._door4In;
+        this.door4InSource.paginator = this.tableD4InPaginator;
+        this.door4InSource.sort = this.sort
+        console.log('D4in GET SC',dataMain)
+      }
+
+      // Door 4 OUT
+      if (dataMain.door == 'ประตู4' && dataMain.gateway == 'ออก') {
+        this._door4Out.push(dataMain);
+        this.door4OutSource = new MatTableDataSource();
+        this.door4OutSource.data = this._door4Out;
+        this.door4OutSource.paginator = this.tableD4InPaginator;
+        this.door4OutSource.sort = this.sort
+        console.log('D4out GET SC',dataMain)
+      }
+
+      // Door 5 IN
+      if (dataMain.door == 'ประตู5' && dataMain.gateway == 'เข้า') {
+        this._door5In.push(dataMain);
+        this.door5InSource = new MatTableDataSource();
+        this.door5InSource.data = this._door5In;
+        this.door5InSource.paginator = this.tableD4InPaginator;
+        this.door5InSource.sort = this.sort
+        console.log('D5in GET SC',dataMain)
+      }
+
+      // Door 5 OUT
+      if (dataMain.door == 'ประตู5' && dataMain.gateway == 'ออก') {
+        this._door5Out.push(dataMain);
+        this.door5OutSource = new MatTableDataSource();
+        this.door5OutSource.data = this._door5Out;
+        this.door5OutSource.paginator = this.tableD4InPaginator;
+        this.door5OutSource.sort = this.sort
+        console.log('D5outGET SC',dataMain)
+      }
+      console.log('D:',dataMain.door,'G:',dataMain.gateway,)
+
+    },
+      error => {
+        this.showSpinner = true;
+      }
+    );
   }
 
 
@@ -135,6 +179,7 @@ export class MainComponent implements OnInit, AfterViewInit {
       if(this._door4In){
         this.showSpinner = false;
       }
+      // this.door4InSource.sort = this.sort
       this.door4InSource.paginator = this.tableD4InPaginator;
       console.log(this._door4In)
     })
@@ -146,6 +191,7 @@ export class MainComponent implements OnInit, AfterViewInit {
       if(this._door4Out){
         this.showSpinner = false;
       }      
+      // this.door4InSource.sort = this.sort
       this.door4OutSource.paginator = this.tableD4OutPaginator;
       console.log(this._door4Out)
     })
@@ -180,23 +226,7 @@ export class MainComponent implements OnInit, AfterViewInit {
     localStorage.setItem('idMainDialog', door4InID)
   }
 
-  openMainDialog(data) {  
-    debugger;  
-    const dialogConfig = new MatDialogConfig();  
-    dialogConfig.disableClose = true;  
-    dialogConfig.autoFocus = true;  
-    dialogConfig.position = {  
-        'top': '100px',  
-        'left': '500px'  
-    };  
-    dialogConfig.width = '500px';  
-    dialogConfig.height = '500px';
-    // this.getIdMainDialog = localStorage.getItem('idMainDialog')
-    dialogConfig.data = {  
-        mainId: data._id  
-    };  
-    this.dialog.open(MainDialogComponent, dialogConfig);  
-} 
+
 
   // getIcarin() {
   //   this.apiService.getIcarin().subscribe((_data : any) => {
