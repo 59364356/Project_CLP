@@ -83,38 +83,15 @@ export class LoginComponent implements OnInit {
         this.router.navigate(["/main"]);
         localStorage.setItem('LoginAdmin',(res['data'][0]['_id']))
         this.openSnackBar()
-
-        // localStorage.setItem('LoginAdmin', this.logAdmin)
-        // this.localLogin = localStorage.setItem('LoginAdmin',password)
-        // console.log('LOCAL ',this.localLogin)
-        // console.log(username, password)
         console.log('LOGIN SUCCESS')
-        // window.location.reload();
-        // window.alert('Login success')
-        // console.log('res status', res.status)
-        // if (res.status == 200){
-        //   this.router.navigate(["/main"]);
-        // }
+ 
       }, err =>{
         console.log(err);
         console.log('LOGIN FALSE')
         window.alert('LOGIN FALSE')
         this.spinner.hide();
       });
-
-      
     }
-
-    // loadingPage(){
-    //   /** spinner starts on init */
-    //   this.spinner.show();
-
-    //   // setTimeout(() => {
-    //     /** spinner ends after 5 seconds */
-    //     this.spinner.hide();
-    //   }, 2000);
-    // }
-
     horizontalPosition: MatSnackBarHorizontalPosition = 'center';
     verticalPosition: MatSnackBarVerticalPosition = 'bottom';
     openSnackBar() {
@@ -127,149 +104,25 @@ export class LoginComponent implements OnInit {
     
 
 
-    // login new  adminz12345  passwordz987654321
-    loginAdmin() {
-      // console.log("ssss")
-      // event.preventDefault()
-      // const target = event.target
-      // const username = target.querySelector('#username').value
-      // const password = target.querySelector('#password').value
-      var username = (<HTMLInputElement>document.getElementById('username')).value;
-      var password = (<HTMLInputElement>document.getElementById('password')).value;
+    // // login new  adminz12345  passwordz987654321
+    // loginAdmin() {
+    //   var username = (<HTMLInputElement>document.getElementById('username')).value;
+    //   var password = (<HTMLInputElement>document.getElementById('password')).value;
 
-      this.authService.getAdminDetails(username, password).subscribe(data => {
-        // this.router.navigate(["/main"]);
-        // console.log('seccess')
-        if(data.success) {
-          this.router.navigate(['/main'])
-          this.authService.setLoggedIn(true)
-          console.log('success')
-          console.log(this.authService.setLoggedIn(true))
-        } else{
-          // this.router.navigate(['login'])
-          window.alert("ERROR " + data.message)
-        }
-      }, err =>{
-        console.log("ERROR!! ",err);
-        window.alert('login false')
-      });
-      console.log(username, password)
-    }
-
-
-  //   onSubmit() {
-  //     this.submitted = true;
-
-  //     // stop here if form is invalid
-  //     if (this.loginForm.invalid) {
-  //         return;
-  //     }
-
-  //     this.loading = true;
-  //     this.authenticationService.login(this.f.username.value, this.f.password.value)
-  //         .pipe(first())
-  //         .subscribe(
-  //             data => {
-  //                 this.router.navigate([this.returnUrl]);
-  //             },
-  //             error => {
-  //                 this.alertService.error(error);
-  //                 this.loading = false;
-  //             });
-  // }
-
-
-    localC(){
-      localStorage.getItem('LoginAdmin')
-      this.localLogin = localStorage.getItem('LoginAdmin')
-      console.log('GET LOCAL ',this.localLogin)
-    }
-
-
-
-
-
-
-
-
-    // msg;
-    // check(uname: string, p : string)
-    // {
-    //   var output = this.authService.checkusernameandpassword(uname, p);
-    //   if(output == true)
-    //   {
-    //     this.router.navigate(['/main']);
-    //   }
-    //   else{
-    //     this.msg ='Invalid username or password';
-    //   }
+    //   this.authService.getAdminDetails(username, password).subscribe(data => {
+    //     if(data.success) {
+    //       this.router.navigate(['/main'])
+    //       this.authService.setLoggedIn(true)
+    //       console.log('success')
+    //       console.log(this.authService.setLoggedIn(true))
+    //     } else{
+    //       window.alert("ERROR " + data.message)
+    //     }
+    //   }, err =>{
+    //     console.log("ERROR!! ",err);
+    //     window.alert('login false')
+    //   });
+    //   console.log(username, password)
     // }
-    
-
-  onClickLogin(){
-    if (this.mUsername == "" && this.mPassword == "")
-    {
-      this.router.navigate(["/main"]);
-      // window.alert("Login Success");
-    }
-    else
-    {
-      window.alert("Login Failed")
-    }
-
-  }
-
-
- 
-  stch() {
-    this.apiService.statusPost(this.resultLogin).subscribe(res => {
-      console.log(res.status)
-    })
-  }
-
-  checkLogin() {
-    this.apiService.checkPost().subscribe((res) => {
-      this.checkStatus = res.status;
-
-      // if(res.status == 200) {
-      //   this.router.navigate(["/main"]);
-      //   console.log("res status",res.status);
-      // }
-      // if(res.status== 204){
-      //   console.log("res 204", res.status)
-      // }
-      // else{
-      //   alert("post ERROR")
-      //   console.log("res status",res.status);
-      // }
-    });
-  }
-
-  sendLogin() {
-    this.postLogin = new postLogin();
-    this.postLogin.username = "adminz12345";
-    this.postLogin.password = "passwordz987654321";
-    this.apiService.addPost(this.postLogin).subscribe((res:respLogin) => {
-      // if(res.status == 200){
-      //   console.log("show status", res.status)
-      // }
-
-      // if(this.mUsername == this.postLogin.username && this.mPassword == this.postLogin.password){
-      //   this.checkLogin();
-      //   console.log(this.postLogin.username);
-      //   console.log(this.postLogin.password);
-        
-      // }
-      // else{
-      //   alert('ERRORRRRR !!!!')
-      // }
-      // this.resultLogin = res;
-      // console.log(this.resultLogin);
-      // this.data = this.resultLogin.username + '-' + this.resultLogin.password;
-    });
-  }
-
-
-
 
 }

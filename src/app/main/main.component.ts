@@ -6,6 +6,7 @@ import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import { MainDialogComponent } from '../main-dialog/main-dialog.component';
 import { MatSort } from '@angular/material/sort';
 import * as io from 'socket.io-client';
+import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browser';
 
 import { Icarin } from '../interface/car-in';
 import { numberCar } from '../interface/numCar';
@@ -19,6 +20,7 @@ import { Observable } from 'rxjs';
 import { ViewChildren, AfterViewInit, QueryList } from '@angular/core';
 
 
+
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
@@ -26,7 +28,13 @@ import { ViewChildren, AfterViewInit, QueryList } from '@angular/core';
 })
 export class MainComponent implements OnInit, AfterViewInit {
 
-  constructor(private router: Router, private apiService:ApiService, public dialog: MatDialog) {
+  safeURL;
+  safeURL2;
+  // videoURL = ;
+
+  constructor( private apiService:ApiService, public dialog: MatDialog,  private _sanitizer: DomSanitizer) {
+    this.safeURL = this._sanitizer.bypassSecurityTrustResourceUrl("https://www.youtube.com/embed/x1NpLb23VOw?autoplay=1&mute=1&enablejsapi=1");
+    this.safeURL2 = this._sanitizer.bypassSecurityTrustResourceUrl("https://www.youtube.com/embed/1vLdF8FP6CU?autoplay=1&mute=1&enablejsapi=1");
   }
 
   private socket;
@@ -95,18 +103,8 @@ export class MainComponent implements OnInit, AfterViewInit {
     this.door5OutSource.filter = filterValue.trim().toLowerCase();
   }
 
-
-
   ngAfterViewInit() { }
-
-
-  // openDialog() {
-  //   this.dialog.open(MainDialogComponent);
-  // }
-
   
-
-
   ngOnInit() {
     
     // table
@@ -225,52 +223,6 @@ export class MainComponent implements OnInit, AfterViewInit {
     // this.router.navigate(['/maindialog', door4InID])
     localStorage.setItem('idMainDialog', door4InID)
   }
-
-
-
-  // getIcarin() {
-  //   this.apiService.getIcarin().subscribe((_data : any) => {
-  //     this._Icarin = _data['data'];
-  //     this.dataSource = new MatTableDataSource(this._Icarin);
-  //     this.dataSource.sort = this.sort;
-  //     this.dataSource.paginator = this.paginator;
-  //     console.log(this._Icarin)
-  //   });
-  // }
-
-  // getnumCar() {
-  //   this.apiService.getnumCar().subscribe((_data : any) => {
-  //     this._numCar = _data['data'];
-  //     this.numCarSource = new MatTableDataSource(this._numCar);
-  //     this.numCarSource.sort = this.sort;
-  //     this.numCarSource.paginator = this.paginator;
-  //     console.log(this._numCar)
-  //   });
-  // }
-
-  // getTest() {
-  //   this.apiService.getTest().subscribe((_test: any) =>{
-  //     this.test = _test;
-  //   })
-  // }
-
-    // gettt() {
-  //   this.apiService.getIcarin().subscribe((_data : any) => {
-  //   this._Icarin = _data['data'];
-  //   this.dataSource = new MatTableDataSource<Icarin>(ELEMENT_DATA);
-  //   this.dataSource.sort = this.sort;
-  //   console.log(this._Icarin)
-  //   });
-
-  // }
-
-  // getApiCarIn(){
-  //   this.apiService.getIcarin()
-  //   .subscribe((_data : any) => {
-  //     this._Icarin = _data['data']
-  //     console.log(this._Icarin)
-  //   });
-  // }
 
 }
 
