@@ -33,7 +33,7 @@ export class MainComponent implements OnInit, AfterViewInit {
   // videoURL = ;
 
   constructor( private apiService:ApiService, public dialog: MatDialog,  private _sanitizer: DomSanitizer) {
-    this.safeURL = this._sanitizer.bypassSecurityTrustResourceUrl("https://www.youtube.com/embed/x1NpLb23VOw?autoplay=1&mute=1&enablejsapi=1");
+    this.safeURL = this._sanitizer.bypassSecurityTrustResourceUrl("https://embed.api.video/live/li4WdATWfPU45OuyxBdmKCaG?autoplay=1&mute=1&enablejsapi=1");
     this.safeURL2 = this._sanitizer.bypassSecurityTrustResourceUrl("https://www.youtube.com/embed/1vLdF8FP6CU?autoplay=1&mute=1&enablejsapi=1");
   }
 
