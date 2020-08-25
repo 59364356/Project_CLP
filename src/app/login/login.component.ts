@@ -14,7 +14,7 @@ import { NgxSpinnerService } from "ngx-spinner";
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
-  providers: [AuthService]
+  // providers: [AuthService]
 })
 export class LoginComponent implements OnInit {
 
@@ -30,37 +30,46 @@ export class LoginComponent implements OnInit {
   // title = 'app';
   showHead: boolean = false;
 
-  submitted : boolean = false ;
 
   mUsername:string = "";
   mPassword:string = "";
   localLogin;
 
 
-  constructor(private router: Router, private apiService: ApiService, private authService: AuthService, 
+  constructor(private router: Router, 
               private _httpClient: HttpClient, private _snackBar: MatSnackBar, private spinner: NgxSpinnerService) {
     // on route change to '/login', set the variable showHead to false
-      router.events.forEach((event) => {
-        if (event instanceof NavigationStart) {
-          if (event['url'] == '/login') {
-            this.showHead = false;
-          } else {
-            // console.log("NU")
-            this.showHead = true;
-          }
-        }
-      });
+      // router.events.forEach((event) => {
+      //   if (event instanceof NavigationStart) {
+      //     if (event['url'] == '/login' || event['url'] == 'login' || localStorage.getItem('LoginAdmin')) {
+      //       this.showHead = false;
+      //     } else {
+      //       // console.log("NU")
+      //       this.showHead = true;
+      //     }
+      //   }
+      // });
     }
 
-    ngOnInit(){
+    ngOnInit(){   
+
       this.checkLocalLogin()
+
+      // if(localStorage.getItem('LoginAdmin')){
+      //   this.router.navigate(['/main'])
+      // }
+
     }
 
     checkLocalLogin(){
+
       if(localStorage.getItem('LoginAdmin')){
         this.router.navigate(['/main'])
+        console.log(localStorage.getItem('LoginAdmin'))
       }
-      this.router.navigate(['/login'])
+      // this.router.navigate(['/login'])
+      // this.router.navigate(['/main'])
+      
     }
 
 
@@ -75,13 +84,12 @@ export class LoginComponent implements OnInit {
         'password':password
       }).subscribe(res =>{
         console.log('res: ',res);
-
+        localStorage.setItem('LoginAdmin',(res['data'][0]['_id']))
         if(res){
           this.spinner.hide();
         }
-        
+
         this.router.navigate(["/main"]);
-        localStorage.setItem('LoginAdmin',(res['data'][0]['_id']))
         this.openSnackBar()
         console.log('LOGIN SUCCESS')
  
