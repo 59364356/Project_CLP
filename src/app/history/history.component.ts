@@ -6,6 +6,7 @@ import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { history_car } from '../interface/history_car';
+import { MainDialogComponent } from '../main-dialog/main-dialog.component';
 import { HistoryDialogComponent } from '../history-dialog/history-dialog.component';
 import { HttpClient, HttpHeaders, HttpErrorResponse, HttpClientModule } from '@angular/common/http';
 import io from 'socket.io-client';
@@ -21,13 +22,13 @@ export class HistoryComponent implements OnInit {
 
 
   _hisCar : history_car[];
-  _hisCar2 : history_car[];
   hisCarColumns : string[] = ['img_car', 'img_licenplate', 'number_car', 'gateway', 'door', 'province', 'type_car', 'color', 'datetime', 'user_name'];
   hisCarSource;
   hisCarSourceEmpty = [];
 
   INCAR = "เข้า";
   OUTCAR = "ออก";
+  noDetect = "ไม่ทราบ";
   showSpinner = false;
 
   socket = io('https://cam-see-car.herokuapp.com');
@@ -49,20 +50,22 @@ export class HistoryComponent implements OnInit {
     this.showSpinner = true;
     this.getHisCar();
     this.getHisRealtime();
-    // this.socket.on('post', (res) =>{
-    //   this._hisCar.push(res)
-    //   // this.dataSource.next(this._hisCar)
-    //   console.log('SOCKET ',res)
-    //   console.log('HIS-CAR ',this._hisCar)
-
-    // })
+ 
+  
   }
 
   getLocalHis(idHisID){
     localStorage.setItem('idHisDialog', idHisID)
   }
+  getIdHis(idHis){
+    localStorage.setItem('idImgMain', idHis)
+    // localStorage.removeItem('idHisDialog')
+  }
 
   openDialog() {
+    this.dialog.open(MainDialogComponent);
+  }
+  openDialogUser() {
     this.dialog.open(HistoryDialogComponent);
   }
 

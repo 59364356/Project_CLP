@@ -28,16 +28,20 @@
             <div  style=" background-color: #e6e6e6; width: 98%; height: 95%; display:flex; align-items: center; justify-content: center;">
               <!-- <video id="video" width="720" height="560" autoplay muted></video> -->
               <!-- <iframe style="width: 100%; height: 100%;" autoplay  [src]='safeURL' frameborder="0" allowfullscreen></iframe> -->
-                <iframe scrolling="auto" style=" width: 100%; height: 100%;" autoplay  [src]='safeURL' frameborder="0" allowfullscreen ></iframe>
-                
+              <div style="width: 78%; height: 100%; background-color: darkgreen;">
+                <iframe class="iframe-vdo" scrolling="auto" style="background-color: darkblue;" autoplay  src="http://192.168.100.14:8080/video" frameborder="0" allowfullscreen="" ></iframe>
+              </div>
               <!-- <video></video> -->
             </div>
           </mat-grid-tile>
 
           <!-- Grid 4 -->
           <mat-grid-tile colspan="2" rowspan="5">
-            <div  style=" background-color: #ffdf89; width: 98%; height: 95%; ">
+            <div  style=" background-color: #ffdf89; width: 98%; height: 95%; display:flex; align-items: center; justify-content: center;">
               <!-- <iframe style="width: 100%; height: 100%;" [src]='safeURL2' frameborder="0" allowfullscreen></iframe> -->
+              <div style="width: 78%; height: 100%; background-color: darkgreen;">
+                <iframe class="iframe-vdo" scrolling="auto" style="background-color: darkblue;" autoplay  src="http://192.168.100.14:8080/video" frameborder="0" allowfullscreen="" ></iframe>
+              </div>
             </div>
           </mat-grid-tile>
 
@@ -54,14 +58,14 @@
 
                 <table style="background-color: #e6e6e6; "  mat-table matSort matSortActive="datetime" matSortDirection="desc" [dataSource]="door4InSource">
                   
-                  <ng-container matColumnDef="img_car">
+                  <ng-container matColumnDef="img_car" >
                     <th style="background-color: #8a8a8a;" mat-header-cell *matHeaderCellDef>ภาพรถยนต์</th>
-                    <td mat-cell *matCellDef="let element" ><img style="width: 100px; height: 70px;" [src]="element.img_car" /></td>
+                    <td mat-cell *matCellDef="let element" (click)="getImgID(element._id)" (click)="openDialog()"><img style="width: 100px; height: 70px; " [src]="element.img_car" /></td>
                   </ng-container>
           
                   <ng-container  matColumnDef="img_licenplate">
                     <th  style="background-color: #8a8a8a;" mat-header-cell *matHeaderCellDef >ป้ายทะเบียน</th>
-                    <td mat-cell *matCellDef="let element"><img style="width: 80px; height: 50px;" [src]="element.img_licenplate" /></td>
+                    <td mat-cell *matCellDef="let element"  (click)="getImgID(element._id)" (click)="openDialog()"><img style="width: 80px; height: 50px;" [src]="element.img_licenplate" /></td>
                   </ng-container>
           
                   <ng-container  matColumnDef="number_car">
@@ -120,12 +124,12 @@
                   
                   <ng-container matColumnDef="img_car">
                     <th style="background-color: #f07b3f;" mat-header-cell *matHeaderCellDef>ภาพรถยนต์</th>
-                    <td mat-cell *matCellDef="let element"><img style="width: 100px; height: 70px;" [src]="element.img_car" /></td>
+                    <td mat-cell *matCellDef="let element"  (click)="getImgID(element._id)" (click)="openDialog()"><img style="width: 100px; height: 70px;" [src]="element.img_car" /></td>
                   </ng-container>
           
                   <ng-container  matColumnDef="img_licenplate">
                     <th style="background-color: #f07b3f;" mat-header-cell *matHeaderCellDef >ป้ายทะเบียน</th>
-                    <td mat-cell *matCellDef="let element"><img style="width: 80px; height: 50px;" [src]="element.img_licenplate" /></td>
+                    <td mat-cell *matCellDef="let element"  (click)="getImgID(element._id)" (click)="openDialog()"><img style="width: 80px; height: 50px;" [src]="element.img_licenplate" /></td>
                   </ng-container>
           
                   <ng-container  matColumnDef="number_car">
@@ -217,12 +221,12 @@
                 
                 <ng-container matColumnDef="img_car">
                   <th style="background-color: #8a8a8a;" mat-header-cell *matHeaderCellDef>ภาพรถยนต์</th>
-                  <td mat-cell *matCellDef="let element"><img style="width: 100px; height: 70px;" [src]="element.img_car" /></td>
+                  <td mat-cell *matCellDef="let element"  (click)="getImgID(element._id)" (click)="openDialog()"><img style="width: 100px; height: 70px;" [src]="element.img_car" /></td>
                 </ng-container>
         
                 <ng-container  matColumnDef="img_licenplate">
                   <th  style="background-color: #8a8a8a;" mat-header-cell *matHeaderCellDef >ป้ายทะเบียน</th>
-                  <td mat-cell *matCellDef="let element"><img style="width: 80px; height: 50px;" [src]="element.img_licenplate" /></td>
+                  <td mat-cell *matCellDef="let element"  (click)="getImgID(element._id)" (click)="openDialog()"><img style="width: 80px; height: 50px;" [src]="element.img_licenplate" /></td>
                 </ng-container>
         
                 <ng-container  matColumnDef="number_car">
@@ -279,12 +283,12 @@
                 
                 <ng-container matColumnDef="img_car">
                   <th style="background-color: #f07b3f;" mat-header-cell *matHeaderCellDef>ภาพรถยนต์</th>
-                  <td mat-cell *matCellDef="let element"><img style="width: 100px; height: 70px;" [src]="element.img_car" /></td>
+                  <td mat-cell *matCellDef="let element"  (click)="getImgID(element._id)" (click)="openDialog()"><img style="width: 100px; height: 70px;" [src]="element.img_car" /></td>
                 </ng-container>
         
                 <ng-container  matColumnDef="img_licenplate">
                   <th style="background-color: #f07b3f;" mat-header-cell *matHeaderCellDef >ป้ายทะเบียน</th>
-                  <td mat-cell *matCellDef="let element"><img style="width: 80px; height: 50px;" [src]="element.img_licenplate" /></td>
+                  <td mat-cell *matCellDef="let element" (click)="getImgID(element._id)" (click)="openDialog()"><img style="width: 80px; height: 50px;" [src]="element.img_licenplate" /></td>
                 </ng-container>
         
                 <ng-container  matColumnDef="number_car">

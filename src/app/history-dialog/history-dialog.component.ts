@@ -6,6 +6,7 @@ import { catchError, retry } from 'rxjs/operators';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { HttpClient } from '@angular/common/http';
 import { UserContAdmin } from '../interface/user-contact-admin';
+import { history_car } from '../interface/history_car';
 import { loginAdmin } from '../interface/login_admin';
 
 @Component({
@@ -21,6 +22,9 @@ export class HistoryDialogComponent implements OnInit {
 
   getHisID = localStorage.getItem('idHisDialog')
   getAdminID = localStorage.getItem('LoginAdmin')
+  getidHis = localStorage.getItem('idHis')
+
+  _hisCar : history_car[];
 
   logAdmin : loginAdmin[];
   contAdmin : UserContAdmin[];
@@ -31,6 +35,7 @@ export class HistoryDialogComponent implements OnInit {
     console.log('ID HIS ', this.getHisID)
     console.log('ID Ad ', this.getAdminID)
     this.postUserConAdmin()
+    // this.getHisCar()
   }
 
   getLocalHis(){
@@ -57,6 +62,19 @@ export class HistoryDialogComponent implements OnInit {
 
     });
   }
+
+  getHisCar() {
+    this.apiService.getHisCar().subscribe((_data: any) =>{
+      this._hisCar = _data['data'];
+      console.log(this._hisCar);
+      if(this._hisCar){
+        this.showSpinner = false;
+      }
+    }, err =>{
+      console.log(err);
+    })
+  }
+
   
 
 }

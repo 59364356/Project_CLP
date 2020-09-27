@@ -20,14 +20,14 @@
                         <ng-container matColumnDef="img_car">
                             <th  mat-header-cell *matHeaderCellDef>ภาพรถยนต์</th>
                             <!-- 486 454 -->
-                            <td mat-cell *matCellDef="let element" ><img style="width: 110px; height: 90px;" [src]="element.img_car" /></td>
+                            <td mat-cell *matCellDef="let element" (click)="getIdHis(element._id)" (click)="openDialog()" ><img style="width: 110px; height: 90px;" [src]="element.img_car" /></td>
                           </ng-container>
                   
                           <ng-container  matColumnDef="img_licenplate">
                             <!--  display: flex; align-items: center; justify-content: center;width: 100%; height: 100%;" -->
                             <th  mat-header-cell *matHeaderCellDef >ป้ายทะเบียน</th>
                             <!-- 220 100 -->
-                            <td mat-cell *matCellDef="let element" ><img style="width: 90px; height: 40px;" [src]="element.img_licenplate" /></td>
+                            <td mat-cell *matCellDef="let element" (click)="getIdHis(element._id)" (click)="openDialog()" ><img style="width: 90px; height: 40px;" [src]="element.img_licenplate" /></td>
                           </ng-container>
                   
                           <ng-container  matColumnDef="number_car">
@@ -54,7 +54,14 @@
                   
                           <ng-container  matColumnDef="province">
                             <th mat-header-cell *matHeaderCellDef>จังหวัด</th>
-                            <td mat-cell *matCellDef="let element">{{ element.province }}</td>
+                            <td mat-cell *matCellDef="let element">
+                              <div *ngIf="element.province == noDetect" style="color: #f03f3f;">
+                                {{ element.province }}
+                              </div>
+                              <div *ngIf="element.province != noDetect">
+                                {{ element.province }}
+                              </div>                              
+                            </td>
                           </ng-container>
 
                           <ng-container matColumnDef="type_car">
@@ -78,7 +85,7 @@
                                 <div *ngFor="let obj of element.register" >
                                     <p *ngIf="element.register.length <= 0">-</p>
                                     <button mat-button matTooltip="ดูข้อมูลติดต่อ" matTooltipClass="example-tooltip-red"
-                                        (click)="getLocalHis(obj.user_id)" (click)="openDialog()" 
+                                        (click)="getLocalHis(obj.user_id)" (click)="openDialogUser()" 
                                         *ngIf="element.register.length > 0">
                                       {{obj.user_name}}
                                     </button>

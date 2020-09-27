@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Router, NavigationStart  } from '@angular/router';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
@@ -15,6 +15,8 @@ import { door4_in } from '../interface/door4_in';
 import { door4_out } from '../interface/door4_out';
 import { door5_in } from '../interface/door5_in';
 import { door5_out } from '../interface/door5_out';
+import { HistoryDialogComponent } from '../history-dialog/history-dialog.component';
+
 
 import { Observable } from 'rxjs';
 import { ViewChildren, AfterViewInit, QueryList } from '@angular/core';
@@ -31,11 +33,13 @@ export class MainComponent implements OnInit, AfterViewInit {
   safeURL;
   safeURL2;
   // videoURL = ;
+  // @ViewChild("tref", {read: ElementRef}) tref: ElementRef;
+  // @ViewChild('chartContainer', { read: ElementRef }) myChartContainer:ElementRef; <iframe width="424" height="240" src="https://www.youtube.com/embed/E7dsUF2h358" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-  constructor( private apiService:ApiService, public dialog: MatDialog,  private _sanitizer: DomSanitizer) {
+  constructor( private apiService:ApiService, public dialog: MatDialog,  private _sanitizer: DomSanitizer, private hostElement: ElementRef) {
     // this.safeURL = this._sanitizer.bypassSecurityTrustResourceUrl("https://embed.api.video/live/li4WdATWfPU45OuyxBdmKCaG?autoplay=1&mute=1&enablejsapi=1");
     this.safeURL = this._sanitizer.bypassSecurityTrustResourceUrl("http://192.168.100.14:8080/video");
-    this.safeURL2 = this._sanitizer.bypassSecurityTrustResourceUrl("https://www.youtube.com/embed/1vLdF8FP6CU?autoplay=1&mute=1&enablejsapi=1");
+    this.safeURL2 = this._sanitizer.bypassSecurityTrustResourceUrl("https://www.youtube.com/embed/E7dsUF2h358?autoplay=1&mute=1&enablejsapi=1");
   }
 
   private socket;
@@ -86,6 +90,12 @@ export class MainComponent implements OnInit, AfterViewInit {
   @ViewChild('TableD5InPaginator', {static: true}) tableD5InPaginator: MatPaginator;
   @ViewChild('TableD5OutPaginator', {static: true}) tableD5OutPaginator: MatPaginator;
 
+  getImgID(idImg){
+    localStorage.setItem('idImgMain', idImg)
+  }
+  openDialog() {
+    this.dialog.open(MainDialogComponent);
+  }
 
   door4InSearch(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -117,6 +127,9 @@ export class MainComponent implements OnInit, AfterViewInit {
     // Socket IO
     this.getMainRealtime()
     
+    // const iframe = this.hostElement.nativeElement.querySelector('iframe');
+    // iframe.src = this.safeURL;
+    // iframe.src = this.safeURL2;
   }
 
   // Socket IO
