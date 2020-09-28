@@ -38,6 +38,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { NgxLoadingModule } from 'ngx-loading';
 import { NgxSpinnerModule } from "ngx-spinner";
+import {WebcamModule} from 'ngx-webcam';
 import {MatTooltipModule} from '@angular/material/tooltip';
 
 import { ScrollingModule } from '@angular/cdk/scrolling';
@@ -68,7 +69,7 @@ import { HistoryDialogComponent } from './history-dialog/history-dialog.componen
     MatSortModule,MatPaginatorModule,MatProgressSpinnerModule,
     MatListModule,MatTabsModule,MatButtonToggleModule,MatToolbarModule,MatRadioModule,
     MatDatepickerModule,MatNativeDateModule,MatSelectModule,
-    ScrollingModule,MatDialogModule,MatSnackBarModule,NgxSpinnerModule,MatTooltipModule,
+    ScrollingModule,MatDialogModule,MatSnackBarModule,NgxSpinnerModule,MatTooltipModule,WebcamModule
   ],
   providers: [
     MatDatepickerModule,

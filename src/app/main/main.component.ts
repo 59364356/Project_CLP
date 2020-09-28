@@ -1,6 +1,7 @@
 import {Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Router, NavigationStart  } from '@angular/router';
 import {MatPaginator} from '@angular/material/paginator';
+import {WebcamImage, WebcamInitError, WebcamUtil} from 'ngx-webcam'; 
 import {MatTableDataSource} from '@angular/material/table';
 import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import { MainDialogComponent } from '../main-dialog/main-dialog.component';
@@ -18,7 +19,7 @@ import { door5_out } from '../interface/door5_out';
 import { HistoryDialogComponent } from '../history-dialog/history-dialog.component';
 
 
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { ViewChildren, AfterViewInit, QueryList } from '@angular/core';
 
 
@@ -43,6 +44,7 @@ export class MainComponent implements OnInit, AfterViewInit {
   }
 
   private socket;
+
 
   // _Icarin: Icarin[];
   // displayedColumns: string[] = ['id','first_name', 'last_name', 'email', 'avatar'];
@@ -130,7 +132,78 @@ export class MainComponent implements OnInit, AfterViewInit {
     // const iframe = this.hostElement.nativeElement.querySelector('iframe');
     // iframe.src = this.safeURL;
     // iframe.src = this.safeURL2;
+
+    WebcamUtil.getAvailableVideoInputs()
+    .then((mediaDevices: MediaDeviceInfo[]) => {
+      this.multipleWebcamsAvailable = mediaDevices && mediaDevices.length > 0;
+    });
   }
+
+
+
+
+    // toggle webcam on/off
+    public showWebcam = true;
+    public allowCameraSwitch = true;
+    public multipleWebcamsAvailable = false;
+    public deviceId: string;
+    public videoOptions: MediaTrackConstraints = {
+      // width: {ideal: 1024},
+      // height: {ideal: 576}
+    };
+    public errors: WebcamInitError[] = [];
+  
+    // latest snapshot
+    public webcamImage: WebcamImage = null;
+  
+    // webcam snapshot trigger
+    private trigger: Subject<void> = new Subject<void>();
+    // switch to next / previous / specific webcam; true/false: forward/backwards, string: deviceId
+    private nextWebcam: Subject<boolean|string> = new Subject<boolean|string>();
+  
+
+  
+    public triggerSnapshot(): void {
+      this.trigger.next();
+    }
+  
+    public toggleWebcam(): void {
+      this.showWebcam = !this.showWebcam;
+    }
+  
+    public handleInitError(error: WebcamInitError): void {
+      this.errors.push(error);
+    }
+  
+    public showNextWebcam(directionOrDeviceId: boolean|string): void {
+      // true => move forward through devices
+      // false => move backwards through devices
+      // string => move to device with given deviceId
+      this.nextWebcam.next(directionOrDeviceId);
+    }
+  
+  
+    public cameraWasSwitched(deviceId: string): void {
+      console.log('active device: ' + deviceId);
+      this.deviceId = deviceId;
+    }
+  
+    public get triggerObservable(): Observable<void> {
+      return this.trigger.asObservable();
+    }
+  
+    public get nextWebcamObservable(): Observable<boolean|string> {
+      return this.nextWebcam.asObservable();
+    }
+
+
+
+
+
+
+
+
+
 
   // Socket IO
   getMainRealtime() {
