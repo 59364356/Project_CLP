@@ -49,7 +49,7 @@ export class HistoryComponent implements OnInit {
   ngOnInit() {
     this.showSpinner = true;
     this.getHisCar();
-    this.getHisRealtime();
+    // this.getHisRealtime();
  
   
   }
@@ -70,6 +70,7 @@ export class HistoryComponent implements OnInit {
   }
 
 
+  // Socket IO
   getHisRealtime() {
     this.apiService.getSocketData().subscribe(async (data: any) => {
       if (data) {

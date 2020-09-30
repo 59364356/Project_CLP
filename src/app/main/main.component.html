@@ -29,7 +29,7 @@
               <!-- <video id="video" width="720" height="560" autoplay muted></video> -->
               <!-- <iframe style="width: 100%; height: 100%;" autoplay  [src]='safeURL' frameborder="0" allowfullscreen></iframe> -->
               <!-- <div style="width: 78%; height: 100%; background-color: darkgreen; display:flex; align-items: center; justify-content: center;"> -->
-                <webcam [height]="450" [width]="598" ></webcam>
+                <!-- <webcam [height]="450" [width]="598" ></webcam> -->
                 <!-- <iframe class="iframe-vdo" scrolling="auto" style="background-color: darkblue;" autoplay  src="http://192.168.100.14:8080/video" frameborder="0" allowfullscreen="" ></iframe> -->
               <!-- </div> -->
               <!-- <video></video> -->
@@ -69,7 +69,7 @@
                   
                   <ng-container matColumnDef="img_car" >
                     <th style="background-color: #8a8a8a;" mat-header-cell *matHeaderCellDef>ภาพรถยนต์</th>
-                    <td mat-cell *matCellDef="let element" (click)="getImgID(element._id)" (click)="openDialog()"><img style="width: 100px; height: 70px; " [src]="element.img_car" /></td>
+                    <td mat-cell *matCellDef="let element" (click)="getImgID(element._id)" (click)="openDialog()"><img style="width: 90px; height: 70px; " [src]="element.img_car" /></td>
                   </ng-container>
           
                   <ng-container  matColumnDef="img_licenplate">
@@ -133,7 +133,7 @@
                   
                   <ng-container matColumnDef="img_car">
                     <th style="background-color: #f07b3f;" mat-header-cell *matHeaderCellDef>ภาพรถยนต์</th>
-                    <td mat-cell *matCellDef="let element"  (click)="getImgID(element._id)" (click)="openDialog()"><img style="width: 100px; height: 70px;" [src]="element.img_car" /></td>
+                    <td mat-cell *matCellDef="let element"  (click)="getImgID(element._id)" (click)="openDialog()"><img style="width: 90px; height: 70px;" [src]="element.img_car" /></td>
                   </ng-container>
           
                   <ng-container  matColumnDef="img_licenplate">
@@ -230,7 +230,7 @@
                 
                 <ng-container matColumnDef="img_car">
                   <th style="background-color: #8a8a8a;" mat-header-cell *matHeaderCellDef>ภาพรถยนต์</th>
-                  <td mat-cell *matCellDef="let element"  (click)="getImgID(element._id)" (click)="openDialog()"><img style="width: 100px; height: 70px;" [src]="element.img_car" /></td>
+                  <td mat-cell *matCellDef="let element"  (click)="getImgID(element._id)" (click)="openDialog()"><img style="width: 90px; height: 70px;" [src]="element.img_car" /></td>
                 </ng-container>
         
                 <ng-container  matColumnDef="img_licenplate">
@@ -292,7 +292,7 @@
                 
                 <ng-container matColumnDef="img_car">
                   <th style="background-color: #f07b3f;" mat-header-cell *matHeaderCellDef>ภาพรถยนต์</th>
-                  <td mat-cell *matCellDef="let element"  (click)="getImgID(element._id)" (click)="openDialog()"><img style="width: 100px; height: 70px;" [src]="element.img_car" /></td>
+                  <td mat-cell *matCellDef="let element"  (click)="getImgID(element._id)" (click)="openDialog()"><img style="width: 90px; height: 70px;" [src]="element.img_car" /></td>
                 </ng-container>
         
                 <ng-container  matColumnDef="img_licenplate">
